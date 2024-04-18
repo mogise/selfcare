@@ -22,60 +22,65 @@ import pandas as pd
 import datetime
 import sip
 
+FILE_PATH = 'test.csv' # 読み込むcsvファイル名
+COLUMN_NUM = 4 # csvファイルのカラム数（dateを除く）
+
+
 class MatplotlibCanvas(FigureCanvasQTAgg):
-    """
-    MatplotLibグラフオブジェクトクラス
+    """MatplotLibグラフオブジェクトクラス
     """
     def __init__(self, parent=None, width=8, height=9, dpi=120):
         fig, self.ax = plt.subplots(figsize=(width, height), dpi=dpi)
         super(MatplotlibCanvas, self).__init__(fig)
+        self.cmap = plt.get_cmap("tab10") # 色の種類 最大10色なので11項目以上はエラーになると思う
 
-    def plot(self, df, columns, periodType, startDate, endDate):
+    def plot(self, df, columns, startDate, endDate):
         self.ax.clear()
-        drawDf = df[startDate:endDate]
+        drawDf = df[startDate:endDate] # データ取得範囲を指定
+
+        # 項目ごとにグラフ表示/非表示を切り替える
+        t = 0
         for column in columns:
             if columns[column]:
-                self.ax.plot(drawDf.index, drawDf[column], label=column, marker='o')
-        self.ax.set_title('Title')
-        self.ax.set_xlabel('Date')
-        self.ax.set_ylabel('Value')
-        self.ax.set_xlim([startDate, endDate])
+                self.ax.plot(drawDf.index, drawDf[column], label=column, marker='o', color=self.cmap(t))
+            t += 1
+        #self.ax.set_title('Title')
+        #self.ax.set_xlabel('Date')
+        #self.ax.set_ylabel('Value')
+        self.ax.set_xlim([startDate, endDate]) # 描画範囲を指定
         
         self.ax.set_yticks([1, 2, 3, 4, 5])
-        self.ax.legend()
+        self.ax.legend(prop = {'family': 'MS Gothic'})
         self.ax.grid(True)
         
         labels = self.ax.get_xticklabels()
-        plt.setp(labels, rotation=45, fontsize=8)
+        plt.setp(labels, rotation=45, fontsize=16)
         
-        # X軸ラベルが見切れるので調整
-        plt.subplots_adjust(bottom=0.3)
+        plt.subplots_adjust(bottom=0.3) # X軸ラベルが見切れるので調整
 
-        
-    def setAxLim(self, startDate, endDate):
-        self.ax.set_xlim([startDate, endDate])
-        plt.xlim([startDate, endDate])
-        
-    def setAxLabel(self, startDate, periodType):
-        xlabels = []
-        if periodType == 'week':
-            for i in range(6):
-                xlabels.append(startDate + pd.DateOffset(days=i+1))
-        else:
-            tempDate = startDate
-            while tempDate.month == startDate.month:
-                xlabels.append(tempDate)
-                tempDate += pd.DateOffset(days=6)  
 
 
 class Ui_MainWindow(object):
+    """UIメインクラス
+    """
+
+    # ********************************
+    # セットアップ関数
+    # ********************************
     def setupUi(self, MainWindow):
+
+        # グラフデータ関連の初期値
+        self.canv = MatplotlibCanvas(self) # グラフを描画するキャンバスオブジェクト
+        self.df = [] # csvのデータを格納するデータフレーム
+        self.columns = {} # 項目別のグラフ表示/非表示を管理する
+
+
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 500)
+        MainWindow.resize(1600, 950)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(30, 20, 570, 450))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(30, 20, 1140, 900))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -84,21 +89,21 @@ class Ui_MainWindow(object):
         self.verticalLayout.addItem(spacerItem)
         
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(630, 400, 131, 41))
+        self.pushButton.setGeometry(QtCore.QRect(1260, 800, 262, 82))
         font = QtGui.QFont()
         font.setFamily("メイリオ")
         font.setPointSize(13)
         self.pushButton.setFont(font)
         self.pushButton.setObjectName("pushButton")
         self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox.setGeometry(QtCore.QRect(620, 20, 151, 151))
+        self.groupBox.setGeometry(QtCore.QRect(1240, 40, 302, 302))
         font = QtGui.QFont()
         font.setFamily("メイリオ")
         font.setPointSize(11)
         self.groupBox.setFont(font)
         self.groupBox.setObjectName("groupBox")
         self.comboBox = QtWidgets.QComboBox(self.groupBox)
-        self.comboBox.setGeometry(QtCore.QRect(30, 30, 51, 31))
+        self.comboBox.setGeometry(QtCore.QRect(60, 60, 102, 62))
         font = QtGui.QFont()
         font.setFamily("メイリオ")
         font.setPointSize(9)
@@ -106,7 +111,7 @@ class Ui_MainWindow(object):
         self.comboBox.setEditable(False)
         self.comboBox.setObjectName("comboBox")
         self.comboBox_2 = QtWidgets.QComboBox(self.groupBox)
-        self.comboBox_2.setGeometry(QtCore.QRect(30, 70, 51, 31))
+        self.comboBox_2.setGeometry(QtCore.QRect(60, 140, 102, 62))
         font = QtGui.QFont()
         font.setFamily("メイリオ")
         font.setPointSize(11)
@@ -114,7 +119,7 @@ class Ui_MainWindow(object):
         self.comboBox_2.setEditable(False)
         self.comboBox_2.setObjectName("comboBox_2")
         self.comboBox_3 = QtWidgets.QComboBox(self.groupBox)
-        self.comboBox_3.setGeometry(QtCore.QRect(30, 110, 51, 31))
+        self.comboBox_3.setGeometry(QtCore.QRect(60, 220, 102, 62))
         font = QtGui.QFont()
         font.setFamily("メイリオ")
         font.setPointSize(11)
@@ -122,71 +127,50 @@ class Ui_MainWindow(object):
         self.comboBox_3.setEditable(False)
         self.comboBox_3.setObjectName("comboBox_3")
         self.label_2 = QtWidgets.QLabel(self.groupBox)
-        self.label_2.setGeometry(QtCore.QRect(90, 30, 31, 31))
+        self.label_2.setGeometry(QtCore.QRect(180, 60, 62, 62))
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(self.groupBox)
-        self.label_3.setGeometry(QtCore.QRect(90, 70, 31, 31))
+        self.label_3.setGeometry(QtCore.QRect(180, 140, 62, 62))
         self.label_3.setObjectName("label_3")
         self.label_4 = QtWidgets.QLabel(self.groupBox)
-        self.label_4.setGeometry(QtCore.QRect(90, 110, 31, 31))
+        self.label_4.setGeometry(QtCore.QRect(180, 220, 62, 62))
         self.label_4.setObjectName("label_4")
         self.groupBox_2 = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox_2.setGeometry(QtCore.QRect(620, 180, 151, 201))
+        self.groupBox_2.setGeometry(QtCore.QRect(1240, 360, 302, 402))
         font = QtGui.QFont()
         font.setFamily("メイリオ")
         font.setPointSize(11)
         self.groupBox_2.setFont(font)
         self.groupBox_2.setObjectName("groupBox_2")
-        self.checkBox_4 = QtWidgets.QCheckBox(self.groupBox_2)
-        self.checkBox_4.setGeometry(QtCore.QRect(20, 150, 91, 31))
+
+        # チェックボックスを配列で作成
+        self.checkBoxes = []
+        checkBoxSizeX = 182
+        checkBoxSizeY = 62
+        checkBoxBaseX = 40 # 1つめの位置
+        checkBoxBaseY = 60 
+        checkBoxSpaceY = 80 # 間隔
         font = QtGui.QFont()
         font.setFamily("メイリオ")
         font.setPointSize(9)
-        self.checkBox_4.setFont(font)
-        self.checkBox_4.setObjectName("checkBox_4")
-        self.checkBox_3 = QtWidgets.QCheckBox(self.groupBox_2)
-        self.checkBox_3.setGeometry(QtCore.QRect(20, 110, 91, 31))
-        font = QtGui.QFont()
-        font.setFamily("メイリオ")
-        font.setPointSize(9)
-        self.checkBox_3.setFont(font)
-        self.checkBox_3.setChecked(True)
-        self.checkBox_3.setObjectName("checkBox_3")
-        self.checkBox_2 = QtWidgets.QCheckBox(self.groupBox_2)
-        self.checkBox_2.setGeometry(QtCore.QRect(20, 70, 91, 31))
-        font = QtGui.QFont()
-        font.setFamily("メイリオ")
-        font.setPointSize(9)
-        self.checkBox_2.setFont(font)
-        self.checkBox_2.setChecked(True)
-        self.checkBox_2.setObjectName("checkBox_2")
-        self.checkBox = QtWidgets.QCheckBox(self.groupBox_2)
-        self.checkBox.setGeometry(QtCore.QRect(20, 30, 91, 31))
-        font = QtGui.QFont()
-        font.setFamily("メイリオ")
-        font.setPointSize(9)
-        self.checkBox.setFont(font)
-        self.checkBox.setChecked(True)
-        self.checkBox.setObjectName("checkBox")
+        for i in range(COLUMN_NUM):
+            self.checkBoxes.append(QtWidgets.QCheckBox(self.groupBox_2)) # グループボックス内に配置する
+            self.checkBoxes[i].setGeometry(QtCore.QRect(checkBoxBaseX, checkBoxBaseY+(checkBoxSpaceY * i), checkBoxSizeX, checkBoxSizeY))
+            self.checkBoxes[i].setFont(font)
+            self.checkBoxes[i].setChecked(True)
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1600, 42))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-        
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-        
-        # グラフデータ関連の初期値
-        self.canv = MatplotlibCanvas(self)
-        self.df = []
-        self.drawDf = []
-        self.columns = {}
-        self.periodType = 'month'
+
         
         # コンボボックスの初期設定
         today = datetime.date.today()
@@ -197,13 +181,19 @@ class Ui_MainWindow(object):
         self.comboBox_2.setCurrentIndex(today.month-1)
         self.comboBox_3.addItem('全て')
         self.calcComboValues()
-        
+        # 関数の関連付け
         self.comboBox.currentIndexChanged['QString'].connect(self.updateCombo_1_2)
         self.comboBox_2.currentIndexChanged['QString'].connect(self.updateCombo_1_2)
         self.comboBox_3.currentIndexChanged['QString'].connect(self.updateCombo_3)
+
+        # チェックボックス関数の関連付け
+        for i in range(COLUMN_NUM):
+            self.checkBoxes[i].stateChanged.connect(self.updateChecks)
         
-        
-    # "表示する週"コンボボックスの内容を更新する関数
+
+    # ********************************
+    # 更新関数
+    # ********************************
     def calcComboValues(self):
         """「表示する週」コンボボックスの選択肢を更新する関数
         """
@@ -218,6 +208,7 @@ class Ui_MainWindow(object):
             count += 1
             tempDate += pd.DateOffset(weeks=1)
         self.comboBox_3.addItems(self.comboWeekList)
+
         
     def clearComboValues(self):
         """「表示する週」コンボボックスから「全て」以外を削除する
@@ -231,46 +222,56 @@ class Ui_MainWindow(object):
     def updateCombo_1_2(self, value):
         """年または月を変更したとき
         """
-        self.drawDf = []
         year = int(self.comboBox.currentText())
         month = int(self.comboBox_2.currentText())
         self.calcComboValues()
-        # print(self.comboBox.currentText())
-        # print(self.comboBox_2.currentText())
-        # print(self.comboBox_3.currentIndex())
-        # "全て"選択時
+
+        # "全て" or "週ごと"
         if self.comboBox_3.currentIndex() == 0:
             dateRange = self.getMonthRange(year=year, month=month)
-            self.periodType = 'month'
         else:
             week = int(self.comboBox_3.currentText())
             dateRange = self.getWeekRange(year=year, month=month, weekOfMonth=week)
-            self.periodType = 'week'
         self.drawPlt(startDate=dateRange['startDate'], endDate=dateRange['endDate'])
-        # print(value)
         
 
     def updateCombo_3(self, value):
         """週を変更したとき
         """
-        self.drawDf = []
         year = int(self.comboBox.currentText())
         month = int(self.comboBox_2.currentText())
-        # print(self.comboBox.currentText())
-        # print(self.comboBox_2.currentText())
-        # print(self.comboBox_3.currentIndex())
-        # "全て"選択時
+        
+        # "全て" or "週ごと"
         if self.comboBox_3.currentIndex() == 0:
             dateRange = self.getMonthRange(year=year, month=month)
-            self.periodType = 'month'
         else:
             week = int(self.comboBox_3.currentText())
             dateRange = self.getWeekRange(year=year, month=month, weekOfMonth=week)
-            self.periodType = 'week'
         self.drawPlt(startDate=dateRange['startDate'], endDate=dateRange['endDate'])
-        # print(value)
-        
-        
+
+
+    def updateChecks(self, values):
+        """チェックボックスを更新したとき
+        """
+        t = 0
+        for col in self.columns:
+            self.columns[col] = self.checkBoxes[t].isChecked()
+            t += 1
+
+        year = int(self.comboBox.currentText())
+        month = int(self.comboBox_2.currentText())
+        if self.comboBox_3.currentIndex() == 0:
+            dateRange = self.getMonthRange(year=year, month=month)
+        else:
+            week = int(self.comboBox_3.currentText())
+            dateRange = self.getWeekRange(year=year, month=month, weekOfMonth=week)
+
+        self.drawPlt(startDate=dateRange['startDate'], endDate=dateRange['endDate'])
+
+
+    # ********************************
+    # グラフ描画関数
+    # ********************************
     def drawPlt(self, startDate, endDate):
         """グラフ描画処理
         """
@@ -280,7 +281,6 @@ class Ui_MainWindow(object):
             self.verticalLayout.removeWidget(self.canv)
             sip.delete(self.canv)
             self.canv = None
-            #self.verticalLayout.removeItem(self.spacerItem)
         except Exception as e:
             print(e)
             pass
@@ -288,25 +288,54 @@ class Ui_MainWindow(object):
         # 再描画
         self.canv = MatplotlibCanvas(self)
         self.verticalLayout.addWidget(self.canv)
-        self.canv.plot(df=self.df, columns=self.columns, periodType=self.periodType, startDate=startDate, endDate=endDate)
+        self.canv.plot(df=self.df, columns=self.columns, startDate=startDate, endDate=endDate)
         self.canv.draw()
+
+    def getWeekRange(self, year, month, weekOfMonth):
+        """指定された週の範囲を取得する
+        """
+        # 月の初日
+        firstDayOfMonth = pd.Timestamp(year=year, month=month, day=1)
         
+        # 月の最初の月曜日を見つける
+        firstMonday = firstDayOfMonth + pd.DateOffset(days=(0 - firstDayOfMonth.weekday()))
+
+        # 指定された週の開始日と終了日
+        startDate = firstMonday + pd.DateOffset(weeks=weekOfMonth-1)
+        endDate = startDate + pd.DateOffset(days=6)
         
+        return {'startDate':startDate, 'endDate':endDate}
     
+
+    def getMonthRange(self, year, month):
+        """指定された月の範囲を取得する
+        """
+        startDate = pd.Timestamp(year=year, month=month, day=1)
+        endDate = pd.Timestamp(year=year, month=month, day=1) + pd.DateOffset(months=1, days=-1)
+        
+        return {'startDate':startDate, 'endDate':endDate}
+    
+
+    # ********************************
+    # 初期化関数
+    # ********************************  
     def readCsv(self, filePath):
         """csvファイル読み込み
         """
         self.df = pd.read_csv(filePath, encoding='utf-8', parse_dates=['date']).fillna(0)
         self.df.set_index('date', inplace=True)
-        # self.updateCombo(self.values[0])
         
     
     def getInitColumns(self):
         """カラム名を取得し初期値をセットする
         """
         keys = self.df.keys()
+        t = 0
         for key in keys:
-            self.columns[key] = True
+            self.columns[key] = True # 項目ごとのグラフ表示/非表示を設定する。初期値は全表示
+            self.checkBoxes[t].setObjectName(key) # チェックボックスの内部名を設定する
+            self.checkBoxes[t].setText(key) # チェックボックスの表示名を設定する
+            t += 1
             
             
     def drawInitPlt(self):
@@ -315,31 +344,6 @@ class Ui_MainWindow(object):
         today = datetime.date.today()
         dateRange = self.getMonthRange(year=today.year, month=today.month)
         self.drawPlt(startDate=dateRange['startDate'], endDate=dateRange['endDate'])
-        
-        
-    def getWeekRange(self, year, month, weekOfMonth):
-        """指定された週の範囲を取得する
-        """
-        firstDayOfMonth = pd.Timestamp(year=year, month=month, day=1)
-        
-        # その月の最初の月曜日を見つける
-        firstMonday = firstDayOfMonth + pd.DateOffset(days=(0 - firstDayOfMonth.weekday()))
-
-        # 指定された週の開始日と終了日
-        startDate = firstMonday + pd.DateOffset(weeks=weekOfMonth-1)
-        endDate = startDate + pd.DateOffset(days=6)
-        
-        return {'startDate':startDate, 'endDate':endDate}
-        
-    
-    def getMonthRange(self, year, month):
-        """指定された月の範囲を取得する
-        """
-        startDate = pd.Timestamp(year=year, month=month, day=1)
-        endDate = pd.Timestamp(year=year, month=month, day=1) + pd.DateOffset(months=1, days=-1)
-        
-        return {'startDate':startDate, 'endDate':endDate}
-        
         
 
     def retranslateUi(self, MainWindow):
@@ -351,10 +355,6 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", "月"))
         self.label_4.setText(_translate("MainWindow", "週目"))
         self.groupBox_2.setTitle(_translate("MainWindow", "表示する項目"))
-        self.checkBox_4.setText(_translate("MainWindow", "CheckBox"))
-        self.checkBox_3.setText(_translate("MainWindow", "睡眠"))
-        self.checkBox_2.setText(_translate("MainWindow", "疲れ"))
-        self.checkBox.setText(_translate("MainWindow", "気分"))
 
 
 if __name__ == "__main__":
@@ -365,8 +365,9 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     
-    ui.readCsv(filePath='test.csv')
+    # 初期処理
+    ui.readCsv(filePath=FILE_PATH)
     ui.getInitColumns()
-    # drawDf = ui.getWeekRange(year=2024, month=4, weekOfMonth=1)
     ui.drawInitPlt()
+
     sys.exit(app.exec_())
