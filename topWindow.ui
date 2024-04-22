@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
+      <y>230</y>
       <width>411</width>
       <height>221</height>
      </rect>
@@ -27,10 +27,10 @@
    <widget class="QPlainTextEdit" name="plainTextEdit">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>260</y>
-      <width>351</width>
-      <height>191</height>
+      <x>320</x>
+      <y>20</y>
+      <width>471</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="plainText">
@@ -40,10 +40,10 @@
    <widget class="QPlainTextEdit" name="plainTextEdit_2">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>20</y>
-      <width>351</width>
-      <height>191</height>
+      <x>320</x>
+      <y>120</y>
+      <width>471</width>
+      <height>91</height>
      </rect>
     </property>
     <property name="plainText">
@@ -54,7 +54,7 @@
     <property name="geometry">
      <rect>
       <x>500</x>
-      <y>370</y>
+      <y>380</y>
       <width>211</width>
       <height>51</height>
      </rect>
@@ -67,13 +67,52 @@
     <property name="geometry">
      <rect>
       <x>500</x>
-      <y>290</y>
+      <y>300</y>
       <width>211</width>
       <height>51</height>
      </rect>
     </property>
     <property name="text">
      <string>登録</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_7">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>170</y>
+      <width>211</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>信頼のサイン</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_8">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>100</y>
+      <width>211</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>心とからだのサイン</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_9">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>30</y>
+      <width>211</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>生活基盤</string>
     </property>
    </widget>
   </widget>
