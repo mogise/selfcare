@@ -40,12 +40,18 @@ class MatplotlibCanvas(FigureCanvasQTAgg):
         self.ax.clear()
         drawDf = df[startDate:endDate] # データ取得範囲を指定
 
+        
+
         # 項目ごとにグラフ表示/非表示を切り替える
         t = 0
+        bottom = 0
         for column in columns:
-            if columns[column]:
-                self.ax.plot(drawDf.index, drawDf[column], label=column, marker='o', color=self.cmap(t))
+            self.ax.bar(drawDf.index, drawDf.iloc[:, t], bottom=bottom)
+            bottom += drawDf.iloc[:, t]
             t += 1
+            # if columns[column]:
+            #     self.ax.plot(drawDf.index, drawDf[column], label=column, marker='o', color=self.cmap(t))
+            # t += 1
         #self.ax.set_title('Title')
         #self.ax.set_xlabel('Date')
         #self.ax.set_ylabel('Value')
@@ -54,8 +60,8 @@ class MatplotlibCanvas(FigureCanvasQTAgg):
         title = startDate.strftime('%Y') + '  ' + startDate.strftime('%m/%d') + ' ~ ' + endDate.strftime('%m/%d')
         self.ax.set_title(title)
         
-        self.ax.set_yticks([1, 2, 3, 4, 5])
-        self.ax.legend(prop = {'family': 'MS Gothic'})
+        # self.ax.set_yticks([1, 2, 3, 4, 5])
+        self.ax.legend(title=drawDf.columns.name, prop = {'family': 'MS Gothic'})
         self.ax.grid(True)
         
         labels = self.ax.get_xticklabels()
