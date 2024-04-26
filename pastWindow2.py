@@ -94,7 +94,6 @@ class Ui_MainWindow(object):
         self.mode = 0 # 表示する大項目の切り替え。mode=0なら生活基盤、3なら心と体、6なら信頼
         self.rangeMode = 'month' # 月表示か週表示か
 
-
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1600, 950)
         self.centralwidget = QtWidgets.QWidget(MainWindow)

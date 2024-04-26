@@ -24,6 +24,8 @@ import sip
 
 FILE_PATH = 'test.csv' # 読み込むcsvファイル名
 COLUMN_NUM = 4 # csvファイルのカラム数（dateを除く）
+YEAR_LIST = ['2024', '2025', '2026']
+MONTH_LIST = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
 
 
 class MatplotlibCanvas(FigureCanvasQTAgg):
@@ -48,16 +50,18 @@ class MatplotlibCanvas(FigureCanvasQTAgg):
         #self.ax.set_xlabel('Date')
         #self.ax.set_ylabel('Value')
         self.ax.set_xlim([startDate, endDate]) # 描画範囲を指定
+
+        title = startDate.strftime('%Y') + '  ' + startDate.strftime('%m/%d') + ' ~ ' + endDate.strftime('%m/%d')
+        self.ax.set_title(title)
         
         self.ax.set_yticks([1, 2, 3, 4, 5])
         self.ax.legend(prop = {'family': 'MS Gothic'})
         self.ax.grid(True)
         
         labels = self.ax.get_xticklabels()
-        plt.setp(labels, rotation=45, fontsize=16)
+        plt.setp(labels, rotation=45, fontsize=12)
         
-        plt.subplots_adjust(bottom=0.3) # X軸ラベルが見切れるので調整
-
+        plt.subplots_adjust(bottom=0.2) # X軸ラベルが見切れるので調整
 
 
 class Ui_MainWindow(object):
@@ -80,7 +84,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(30, 20, 1140, 900))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(30, 0, 1140, 900))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -97,32 +101,32 @@ class Ui_MainWindow(object):
         self.pushButton.setObjectName("pushButton")
         self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox.setGeometry(QtCore.QRect(1240, 40, 302, 302))
-        font = QtGui.QFont()
-        font.setFamily("メイリオ")
+        # font = QtGui.QFont()
+        # font.setFamily("メイリオ")
         font.setPointSize(11)
         self.groupBox.setFont(font)
         self.groupBox.setObjectName("groupBox")
         self.comboBox = QtWidgets.QComboBox(self.groupBox)
         self.comboBox.setGeometry(QtCore.QRect(60, 60, 102, 62))
-        font = QtGui.QFont()
-        font.setFamily("メイリオ")
+        # font = QtGui.QFont()
+        # font.setFamily("メイリオ")
         font.setPointSize(9)
         self.comboBox.setFont(font)
         self.comboBox.setEditable(False)
         self.comboBox.setObjectName("comboBox")
         self.comboBox_2 = QtWidgets.QComboBox(self.groupBox)
         self.comboBox_2.setGeometry(QtCore.QRect(60, 140, 102, 62))
-        font = QtGui.QFont()
-        font.setFamily("メイリオ")
+        # font = QtGui.QFont()
+        # font.setFamily("メイリオ")
         font.setPointSize(11)
         self.comboBox_2.setFont(font)
         self.comboBox_2.setEditable(False)
         self.comboBox_2.setObjectName("comboBox_2")
         self.comboBox_3 = QtWidgets.QComboBox(self.groupBox)
         self.comboBox_3.setGeometry(QtCore.QRect(60, 220, 102, 62))
-        font = QtGui.QFont()
-        font.setFamily("メイリオ")
-        font.setPointSize(11)
+        # font = QtGui.QFont()
+        # font.setFamily("メイリオ")
+        # font.setPointSize(11)
         self.comboBox_3.setFont(font)
         self.comboBox_3.setEditable(False)
         self.comboBox_3.setObjectName("comboBox_3")
@@ -137,9 +141,9 @@ class Ui_MainWindow(object):
         self.label_4.setObjectName("label_4")
         self.groupBox_2 = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox_2.setGeometry(QtCore.QRect(1240, 360, 302, 402))
-        font = QtGui.QFont()
-        font.setFamily("メイリオ")
-        font.setPointSize(11)
+        # font = QtGui.QFont()
+        # font.setFamily("メイリオ")
+        # font.setPointSize(11)
         self.groupBox_2.setFont(font)
         self.groupBox_2.setObjectName("groupBox_2")
 
@@ -147,11 +151,11 @@ class Ui_MainWindow(object):
         self.checkBoxes = []
         checkBoxSizeX = 182
         checkBoxSizeY = 62
-        checkBoxBaseX = 40 # 1つめの位置
-        checkBoxBaseY = 60 
-        checkBoxSpaceY = 80 # 間隔
-        font = QtGui.QFont()
-        font.setFamily("メイリオ")
+        checkBoxBaseX = 30 # 1つめの位置
+        checkBoxBaseY = 30 
+        checkBoxSpaceY = 40 # 間隔
+        # font = QtGui.QFont()
+        # font.setFamily("メイリオ")
         font.setPointSize(9)
         for i in range(COLUMN_NUM):
             self.checkBoxes.append(QtWidgets.QCheckBox(self.groupBox_2)) # グループボックス内に配置する
@@ -175,8 +179,8 @@ class Ui_MainWindow(object):
         # コンボボックスの初期設定
         today = datetime.date.today()
         self.comboWeekList = []
-        self.comboBox.addItems(['2024', '2025'])
-        self.comboBox_2.addItems(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'])
+        self.comboBox.addItems(YEAR_LIST)
+        self.comboBox_2.addItems(MONTH_LIST)
         # 初期値を今日の日付に合わせる
         self.comboBox_2.setCurrentIndex(today.month-1)
         self.comboBox_3.addItem('全て')
