@@ -13,8 +13,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 # 追加インポート
 import matplotlib
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 matplotlib.use('Qt5Agg')
 from PyQt5.QtWidgets import QFileDialog
+from matplotlib.dates import date2num, num2date
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 import seaborn as sns
@@ -36,36 +38,42 @@ class MatplotlibCanvas(FigureCanvasQTAgg):
         super(MatplotlibCanvas, self).__init__(fig)
         self.cmap = plt.get_cmap("tab10") # 色の種類 最大10色なので11項目以上はエラーになると思う
 
-    def plot(self, df, columns, startDate, endDate):
+    def plot(self, df, columns, startDate, endDate, rangeMode, mode):
         self.ax.clear()
+        self.ax.grid(True)
+        dw=0.2 # 横並びのときの棒の幅
+
         drawDf = df[startDate:endDate] # データ取得範囲を指定
 
-        
-
-        # 項目ごとにグラフ表示/非表示を切り替える
-        t = 0
-        bottom = 0
-        for column in columns:
-            self.ax.bar(drawDf.index, drawDf.iloc[:, t], bottom=bottom)
-            bottom += drawDf.iloc[:, t]
-            t += 1
-            # if columns[column]:
-            #     self.ax.plot(drawDf.index, drawDf[column], label=column, marker='o', color=self.cmap(t))
-            # t += 1
-        #self.ax.set_title('Title')
-        #self.ax.set_xlabel('Date')
-        #self.ax.set_ylabel('Value')
-        self.ax.set_xlim([startDate, endDate]) # 描画範囲を指定
-
+        # タイトルを設定
         title = startDate.strftime('%Y') + '  ' + startDate.strftime('%m/%d') + ' ~ ' + endDate.strftime('%m/%d')
         self.ax.set_title(title)
+
+        # 月表示なら積み上げ、週表示なら横並びの棒グラフ
+        if(rangeMode == 'month'):
+            bottom = 0
+            for i in range(mode, mode+4):
+                self.ax.bar(drawDf.index, drawDf.iloc[:, i], bottom=bottom, label=columns[i])
+                bottom += drawDf.iloc[:, i]
+        else:
+            # 各日について3つの項目の棒グラフを並べる。2つ目の棒を中心にとる
+            for i in range(mode, mode+4):
+                x = date2num(drawDf.index)
+                self.ax.bar(align='center', x=x+dw*(i-1), width=dw, height=drawDf[columns[i]], label=columns[i])
+
+        # グラフの描画範囲を設定
+        # そのままだと端が見切れてしまうので、オフセットを設ける）
+        xLimStart = num2date(date2num(startDate) - 0.5)
+        xLimEnd = num2date(date2num(endDate) + 0.5)
+        self.ax.set_xlim([xLimStart, xLimEnd]) # 描画範囲を指定
+
+        #凡例の設定
+        self.ax.legend(prop = {'family': 'MS Gothic'}, loc="upper center", ncol=4)
         
-        # self.ax.set_yticks([1, 2, 3, 4, 5])
-        self.ax.legend(title=drawDf.columns.name, prop = {'family': 'MS Gothic'})
-        self.ax.grid(True)
-        
+        # 目盛の設定
+        self.ax.xaxis.set_major_locator(mdates.DayLocator())
         labels = self.ax.get_xticklabels()
-        plt.setp(labels, rotation=45, fontsize=12)
+        plt.setp(labels, rotation=90, fontsize=9)
         
         plt.subplots_adjust(bottom=0.2) # X軸ラベルが見切れるので調整
 
@@ -82,8 +90,9 @@ class Ui_MainWindow(object):
         # グラフデータ関連の初期値
         self.canv = MatplotlibCanvas(self) # グラフを描画するキャンバスオブジェクト
         self.df = [] # csvのデータを格納するデータフレーム
-        self.columns = {} # 項目別のグラフ表示/非表示を管理する
-
+        self.columns = [] # 項目別のグラフ表示/非表示を管理する
+        self.mode = 0 # 表示する大項目の切り替え。mode=0なら生活基盤、3なら心と体、6なら信頼
+        self.rangeMode = 'month' # 月表示か週表示か
 
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1600, 950)
@@ -298,7 +307,7 @@ class Ui_MainWindow(object):
         # 再描画
         self.canv = MatplotlibCanvas(self)
         self.verticalLayout.addWidget(self.canv)
-        self.canv.plot(df=self.df, columns=self.columns, startDate=startDate, endDate=endDate)
+        self.canv.plot(df=self.df, columns=self.columns, startDate=startDate, endDate=endDate, rangeMode=self.rangeMode, mode=self.mode)
         self.canv.draw()
 
     def getWeekRange(self, year, month, weekOfMonth):
@@ -342,7 +351,7 @@ class Ui_MainWindow(object):
         keys = self.df.keys()
         t = 0
         for key in keys:
-            self.columns[key] = True # 項目ごとのグラフ表示/非表示を設定する。初期値は全表示
+            self.columns.append(key) # グラフの項目名を追加する
             self.checkBoxes[t].setObjectName(key) # チェックボックスの内部名を設定する
             self.checkBoxes[t].setText(key) # チェックボックスの表示名を設定する
             t += 1
