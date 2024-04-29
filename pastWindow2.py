@@ -36,11 +36,12 @@ class MatplotlibCanvas(FigureCanvasQTAgg):
     def __init__(self, parent=None, width=8, height=9, dpi=120):
         fig, self.ax = plt.subplots(figsize=(width, height), dpi=dpi)
         super(MatplotlibCanvas, self).__init__(fig)
-        self.cmap = plt.get_cmap("tab10") # 色の種類 最大10色なので11項目以上はエラーになると思う
+        self.cmap = plt.get_cmap("tab20") # 色の種類 最大10色なので11項目以上はエラーになると思う
 
     def plot(self, df, columns, startDate, endDate, rangeMode, mode):
         self.ax.clear()
         self.ax.grid(True)
+        self.ax.set_axisbelow(True)
         dw=0.2 # 横並びのときの棒の幅
 
         drawDf = df[startDate:endDate] # データ取得範囲を指定
@@ -52,14 +53,14 @@ class MatplotlibCanvas(FigureCanvasQTAgg):
         # 月表示なら積み上げ、週表示なら横並びの棒グラフ
         if(rangeMode == 'month'):
             bottom = 0
-            for i in range(mode, mode+4):
-                self.ax.bar(drawDf.index, drawDf.iloc[:, i], bottom=bottom, label=columns[i])
+            for i in range(mode, mode+3):
+                self.ax.bar(drawDf.index, drawDf.iloc[:, i], bottom=bottom, label=columns[i], color=self.cmap(mode+i))
                 bottom += drawDf.iloc[:, i]
         else:
             # 各日について3つの項目の棒グラフを並べる。2つ目の棒を中心にとる
-            for i in range(mode, mode+4):
+            for i in range(mode, mode+3):
                 x = date2num(drawDf.index)
-                self.ax.bar(align='center', x=x+dw*(i-1), width=dw, height=drawDf[columns[i]], label=columns[i])
+                self.ax.bar(align='center', x=x+dw*((i%3)-1), width=dw, height=drawDf[columns[i]], label=columns[i], color=self.cmap(mode+i))
 
         # グラフの描画範囲を設定
         # そのままだと端が見切れてしまうので、オフセットを設ける）
@@ -78,7 +79,7 @@ class MatplotlibCanvas(FigureCanvasQTAgg):
         plt.subplots_adjust(bottom=0.2) # X軸ラベルが見切れるので調整
 
 
-class Ui_MainWindow(object):
+class Ui_MainWindow(QtWidgets.QWidget):
     """UIメインクラス
     """
 
@@ -161,22 +162,21 @@ class Ui_MainWindow(object):
         # font.setPointSize(11)
         self.groupBox_2.setFont(font)
         self.groupBox_2.setObjectName("groupBox_2")
-
-        # チェックボックスを配列で作成
-        self.checkBoxes = []
-        checkBoxSizeX = 182
-        checkBoxSizeY = 62
-        checkBoxBaseX = 30 # 1つめの位置
-        checkBoxBaseY = 30 
-        checkBoxSpaceY = 40 # 間隔
-        # font = QtGui.QFont()
-        # font.setFamily("メイリオ")
-        font.setPointSize(9)
-        for i in range(COLUMN_NUM):
-            self.checkBoxes.append(QtWidgets.QCheckBox(self.groupBox_2)) # グループボックス内に配置する
-            self.checkBoxes[i].setGeometry(QtCore.QRect(checkBoxBaseX, checkBoxBaseY+(checkBoxSpaceY * i), checkBoxSizeX, checkBoxSizeY))
-            self.checkBoxes[i].setFont(font)
-            self.checkBoxes[i].setChecked(True)
+        
+        
+        self.radioBtn_1 = QtWidgets.QRadioButton(self.groupBox_2)
+        self.radioBtn_1.setGeometry(QtCore.QRect(30, 30, 190, 70))
+        self.radioBtn_1.setFont(font)
+        self.radioBtn_1.setChecked(True)
+        
+        self.radioBtn_2 = QtWidgets.QRadioButton(self.groupBox_2)
+        self.radioBtn_2.setGeometry(QtCore.QRect(30, 70, 190, 70))
+        self.radioBtn_2.setFont(font)
+        
+        self.radioBtn_3 = QtWidgets.QRadioButton(self.groupBox_2)
+        self.radioBtn_3.setGeometry(QtCore.QRect(30, 110, 190, 70))
+        self.radioBtn_3.setFont(font)
+        
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -204,10 +204,11 @@ class Ui_MainWindow(object):
         self.comboBox.currentIndexChanged['QString'].connect(self.updateCombo_1_2)
         self.comboBox_2.currentIndexChanged['QString'].connect(self.updateCombo_1_2)
         self.comboBox_3.currentIndexChanged['QString'].connect(self.updateCombo_3)
-
-        # チェックボックス関数の関連付け
-        for i in range(COLUMN_NUM):
-            self.checkBoxes[i].stateChanged.connect(self.updateChecks)
+        
+        
+        self.radioBtn_1.toggled.connect(self.updateRadio)
+        self.radioBtn_2.toggled.connect(self.updateRadio)
+        self.radioBtn_3.toggled.connect(self.updateRadio)
         
 
     # ********************************
@@ -263,29 +264,41 @@ class Ui_MainWindow(object):
         # "全て" or "週ごと"
         if self.comboBox_3.currentIndex() == 0:
             dateRange = self.getMonthRange(year=year, month=month)
+            self.rangeMode = 'month'
         else:
             week = int(self.comboBox_3.currentText())
             dateRange = self.getWeekRange(year=year, month=month, weekOfMonth=week)
+            self.rangeMode = 'week'
         self.drawPlt(startDate=dateRange['startDate'], endDate=dateRange['endDate'])
-
-
-    def updateChecks(self, values):
-        """チェックボックスを更新したとき
+        
+        
+    def updateRadio(self, values):
+        """ラジオボタンを更新したとき
         """
-        t = 0
-        for col in self.columns:
-            self.columns[col] = self.checkBoxes[t].isChecked()
-            t += 1
-
+        radioBtn = self.sender()
+        if radioBtn is None or not isinstance(radioBtn, QtWidgets.QRadioButton):
+            return
+        txt = radioBtn.text()
+        if txt == '生活基盤':
+            self.mode = 0
+        elif txt == '心と体のサイン':
+            self.mode = 3
+        elif txt == '信頼のサイン':
+            self.mode = 6
+            
         year = int(self.comboBox.currentText())
         month = int(self.comboBox_2.currentText())
+            
+        # "全て" or "週ごと"
         if self.comboBox_3.currentIndex() == 0:
             dateRange = self.getMonthRange(year=year, month=month)
+            self.rangeMode = 'month'
         else:
             week = int(self.comboBox_3.currentText())
             dateRange = self.getWeekRange(year=year, month=month, weekOfMonth=week)
-
+            self.rangeMode = 'week'
         self.drawPlt(startDate=dateRange['startDate'], endDate=dateRange['endDate'])
+            
 
 
     # ********************************
@@ -349,12 +362,8 @@ class Ui_MainWindow(object):
         """カラム名を取得し初期値をセットする
         """
         keys = self.df.keys()
-        t = 0
         for key in keys:
             self.columns.append(key) # グラフの項目名を追加する
-            self.checkBoxes[t].setObjectName(key) # チェックボックスの内部名を設定する
-            self.checkBoxes[t].setText(key) # チェックボックスの表示名を設定する
-            t += 1
             
             
     def drawInitPlt(self):
@@ -373,6 +382,9 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "年"))
         self.label_3.setText(_translate("MainWindow", "月"))
         self.label_4.setText(_translate("MainWindow", "週目"))
+        self.radioBtn_1.setText(_translate("MainWindow", "生活基盤"))
+        self.radioBtn_2.setText(_translate("MainWindow", "心と体のサイン"))
+        self.radioBtn_3.setText(_translate("MainWindow", "信頼のサイン"))
         self.groupBox_2.setTitle(_translate("MainWindow", "表示する項目"))
 
 
