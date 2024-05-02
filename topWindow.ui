@@ -1452,7 +1452,7 @@
      </font>
     </property>
     <property name="text">
-     <string>低い</string>
+     <string>低い　　　　　　　　　　　　　　　　　　　　　　　　高い</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
