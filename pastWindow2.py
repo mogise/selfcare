@@ -100,7 +100,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(30, 0, 1140, 900))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(30, 0, 1100, 900))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -109,21 +109,21 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.verticalLayout.addItem(spacerItem)
         
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(1260, 800, 262, 82))
+        self.pushButton.setGeometry(QtCore.QRect(1230, 820, 260, 80))
         font = QtGui.QFont()
         font.setFamily("メイリオ")
-        font.setPointSize(13)
+        font.setPointSize(12)
         self.pushButton.setFont(font)
         self.pushButton.setObjectName("pushButton")
         self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox.setGeometry(QtCore.QRect(1240, 40, 302, 302))
+        self.groupBox.setGeometry(QtCore.QRect(1160, 40, 400, 120))
         # font = QtGui.QFont()
         # font.setFamily("メイリオ")
         font.setPointSize(11)
         self.groupBox.setFont(font)
         self.groupBox.setObjectName("groupBox")
         self.comboBox = QtWidgets.QComboBox(self.groupBox)
-        self.comboBox.setGeometry(QtCore.QRect(60, 60, 102, 62))
+        self.comboBox.setGeometry(QtCore.QRect(30, 40, 80, 60))
         # font = QtGui.QFont()
         # font.setFamily("メイリオ")
         font.setPointSize(9)
@@ -131,7 +131,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.comboBox.setEditable(False)
         self.comboBox.setObjectName("comboBox")
         self.comboBox_2 = QtWidgets.QComboBox(self.groupBox)
-        self.comboBox_2.setGeometry(QtCore.QRect(60, 140, 102, 62))
+        self.comboBox_2.setGeometry(QtCore.QRect(150, 40, 70, 60))
         # font = QtGui.QFont()
         # font.setFamily("メイリオ")
         font.setPointSize(11)
@@ -139,7 +139,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.comboBox_2.setEditable(False)
         self.comboBox_2.setObjectName("comboBox_2")
         self.comboBox_3 = QtWidgets.QComboBox(self.groupBox)
-        self.comboBox_3.setGeometry(QtCore.QRect(60, 220, 102, 62))
+        self.comboBox_3.setGeometry(QtCore.QRect(260, 40, 80, 60))
         # font = QtGui.QFont()
         # font.setFamily("メイリオ")
         # font.setPointSize(11)
@@ -147,16 +147,16 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.comboBox_3.setEditable(False)
         self.comboBox_3.setObjectName("comboBox_3")
         self.label_2 = QtWidgets.QLabel(self.groupBox)
-        self.label_2.setGeometry(QtCore.QRect(180, 60, 62, 62))
+        self.label_2.setGeometry(QtCore.QRect(110, 40, 60, 60))
         self.label_2.setObjectName("label_2")
         self.label_3 = QtWidgets.QLabel(self.groupBox)
-        self.label_3.setGeometry(QtCore.QRect(180, 140, 62, 62))
+        self.label_3.setGeometry(QtCore.QRect(220, 40, 60, 60))
         self.label_3.setObjectName("label_3")
         self.label_4 = QtWidgets.QLabel(self.groupBox)
-        self.label_4.setGeometry(QtCore.QRect(180, 220, 62, 62))
+        self.label_4.setGeometry(QtCore.QRect(340, 40, 60, 60))
         self.label_4.setObjectName("label_4")
         self.groupBox_2 = QtWidgets.QGroupBox(self.centralwidget)
-        self.groupBox_2.setGeometry(QtCore.QRect(1240, 360, 302, 402))
+        self.groupBox_2.setGeometry(QtCore.QRect(1160, 180, 400, 190))
         # font = QtGui.QFont()
         # font.setFamily("メイリオ")
         # font.setPointSize(11)
@@ -176,7 +176,14 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.radioBtn_3 = QtWidgets.QRadioButton(self.groupBox_2)
         self.radioBtn_3.setGeometry(QtCore.QRect(30, 110, 190, 70))
         self.radioBtn_3.setFont(font)
-        
+
+
+        # カレンダー
+        self.calendar = QtWidgets.QCalendarWidget(MainWindow)
+        self.calendar.setGeometry(QtCore.QRect(1160, 400, 400, 350))
+        self.calendar.setGridVisible(True)
+        self.calendar.setVerticalHeaderFormat(QtWidgets.QCalendarWidget.NoVerticalHeader)
+
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -209,6 +216,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.radioBtn_1.toggled.connect(self.updateRadio)
         self.radioBtn_2.toggled.connect(self.updateRadio)
         self.radioBtn_3.toggled.connect(self.updateRadio)
+
         
 
     # ********************************
@@ -253,6 +261,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
             week = int(self.comboBox_3.currentText())
             dateRange = self.getWeekRange(year=year, month=month, weekOfMonth=week)
         self.drawPlt(startDate=dateRange['startDate'], endDate=dateRange['endDate'])
+        self.changeCalView()
         
 
     def updateCombo_3(self, value):
@@ -298,8 +307,11 @@ class Ui_MainWindow(QtWidgets.QWidget):
             dateRange = self.getWeekRange(year=year, month=month, weekOfMonth=week)
             self.rangeMode = 'week'
         self.drawPlt(startDate=dateRange['startDate'], endDate=dateRange['endDate'])
-            
 
+    def changeCalView(self):
+        year = int(self.comboBox.currentText())
+        month = int(self.comboBox_2.currentText())
+        self.calendar.setCurrentPage(year, month)
 
     # ********************************
     # グラフ描画関数
