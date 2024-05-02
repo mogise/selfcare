@@ -24,7 +24,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>40</y>
+      <y>700</y>
       <width>411</width>
       <height>221</height>
      </rect>
@@ -34,7 +34,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>860</y>
+      <y>590</y>
       <width>351</width>
       <height>91</height>
      </rect>
@@ -54,7 +54,7 @@
     <property name="geometry">
      <rect>
       <x>410</x>
-      <y>860</y>
+      <y>590</y>
       <width>371</width>
       <height>91</height>
      </rect>
@@ -73,8 +73,8 @@
    <widget class="QPushButton" name="pushButton_Past">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>110</y>
+      <x>510</x>
+      <y>750</y>
       <width>181</width>
       <height>51</height>
      </rect>
@@ -93,8 +93,8 @@
    <widget class="QPushButton" name="pushButton_Resist">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>200</y>
+      <x>510</x>
+      <y>840</y>
       <width>181</width>
       <height>51</height>
      </rect>
@@ -133,8 +133,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>360</y>
+      <x>150</x>
+      <y>90</y>
       <width>41</width>
       <height>21</height>
      </rect>
@@ -153,8 +153,8 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>460</y>
+      <x>150</x>
+      <y>190</y>
       <width>41</width>
       <height>21</height>
      </rect>
@@ -173,9 +173,9 @@
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>530</y>
-      <width>121</width>
+      <x>40</x>
+      <y>260</y>
+      <width>171</width>
       <height>21</height>
      </rect>
     </property>
@@ -187,14 +187,14 @@
      </font>
     </property>
     <property name="text">
-     <string>不安・ストレス</string>
+     <string>不安・ストレスがない</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>570</y>
+      <x>100</x>
+      <y>310</y>
       <width>101</width>
       <height>21</height>
      </rect>
@@ -213,8 +213,8 @@
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>620</y>
+      <x>130</x>
+      <y>350</y>
       <width>71</width>
       <height>21</height>
      </rect>
@@ -233,8 +233,8 @@
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>710</y>
+      <x>110</x>
+      <y>440</y>
       <width>101</width>
       <height>21</height>
      </rect>
@@ -253,8 +253,8 @@
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>760</y>
+      <x>110</x>
+      <y>490</y>
       <width>101</width>
       <height>21</height>
      </rect>
@@ -273,8 +273,8 @@
    <widget class="QLabel" name="label_9">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>810</y>
+      <x>100</x>
+      <y>540</y>
       <width>121</width>
       <height>21</height>
      </rect>
@@ -293,8 +293,8 @@
    <widget class="QLabel" name="label_10">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>410</y>
+      <x>150</x>
+      <y>140</y>
       <width>41</width>
       <height>20</height>
      </rect>
@@ -313,8 +313,8 @@
    <widget class="QRadioButton" name="sleepRadio_1">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>360</y>
+      <x>240</x>
+      <y>90</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -329,8 +329,8 @@
    <widget class="QRadioButton" name="sleepRadio_2">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>360</y>
+      <x>340</x>
+      <y>90</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -345,8 +345,8 @@
    <widget class="QRadioButton" name="sleepRadio_3">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>360</y>
+      <x>440</x>
+      <y>90</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -361,8 +361,8 @@
    <widget class="QRadioButton" name="sleepRadio_4">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>360</y>
+      <x>540</x>
+      <y>90</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -377,8 +377,8 @@
    <widget class="QRadioButton" name="sleepRadio_5">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>360</y>
+      <x>640</x>
+      <y>90</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -393,8 +393,8 @@
    <widget class="QRadioButton" name="trustMeRadio_4">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>710</y>
+      <x>540</x>
+      <y>440</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -409,8 +409,8 @@
    <widget class="QRadioButton" name="trustMeRadio_1">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>710</y>
+      <x>240</x>
+      <y>440</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -425,8 +425,8 @@
    <widget class="QRadioButton" name="trustMeRadio_3">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>710</y>
+      <x>440</x>
+      <y>440</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -441,8 +441,8 @@
    <widget class="QRadioButton" name="trustMeRadio_2">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>710</y>
+      <x>340</x>
+      <y>440</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -457,8 +457,8 @@
    <widget class="QRadioButton" name="trustMeRadio_5">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>710</y>
+      <x>640</x>
+      <y>440</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -473,8 +473,8 @@
    <widget class="QRadioButton" name="mealRadio_3">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>410</y>
+      <x>440</x>
+      <y>140</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -489,8 +489,8 @@
    <widget class="QRadioButton" name="mealRadio_5">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>410</y>
+      <x>640</x>
+      <y>140</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -505,8 +505,8 @@
    <widget class="QRadioButton" name="mealRadio_1">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>410</y>
+      <x>240</x>
+      <y>140</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -521,8 +521,8 @@
    <widget class="QRadioButton" name="mealRadio_2">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>410</y>
+      <x>340</x>
+      <y>140</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -537,8 +537,8 @@
    <widget class="QRadioButton" name="mealRadio_4">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>410</y>
+      <x>540</x>
+      <y>140</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -553,8 +553,8 @@
    <widget class="QRadioButton" name="trustOtherRadio_5">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>760</y>
+      <x>640</x>
+      <y>490</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -569,8 +569,8 @@
    <widget class="QRadioButton" name="trustOtherRadio_1">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>760</y>
+      <x>240</x>
+      <y>490</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -585,8 +585,8 @@
    <widget class="QRadioButton" name="trustOtherRadio_2">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>760</y>
+      <x>340</x>
+      <y>490</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -601,8 +601,8 @@
    <widget class="QRadioButton" name="trustOtherRadio_3">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>760</y>
+      <x>440</x>
+      <y>490</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -617,8 +617,8 @@
    <widget class="QRadioButton" name="trustOtherRadio_4">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>760</y>
+      <x>540</x>
+      <y>490</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -633,8 +633,8 @@
    <widget class="QRadioButton" name="stressRadio_5">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>530</y>
+      <x>640</x>
+      <y>260</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -649,8 +649,8 @@
    <widget class="QRadioButton" name="stressRadio_1">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>530</y>
+      <x>240</x>
+      <y>260</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -665,8 +665,8 @@
    <widget class="QRadioButton" name="stressRadio_2">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>530</y>
+      <x>340</x>
+      <y>260</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -681,8 +681,8 @@
    <widget class="QRadioButton" name="stressRadio_3">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>530</y>
+      <x>440</x>
+      <y>260</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -697,8 +697,8 @@
    <widget class="QRadioButton" name="stressRadio_4">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>530</y>
+      <x>540</x>
+      <y>260</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -713,8 +713,8 @@
    <widget class="QRadioButton" name="fitRadio_5">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>460</y>
+      <x>640</x>
+      <y>190</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -729,8 +729,8 @@
    <widget class="QRadioButton" name="fitRadio_1">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>460</y>
+      <x>240</x>
+      <y>190</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -745,8 +745,8 @@
    <widget class="QRadioButton" name="fitRadio_2">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>460</y>
+      <x>340</x>
+      <y>190</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -761,8 +761,8 @@
    <widget class="QRadioButton" name="fitRadio_3">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>460</y>
+      <x>440</x>
+      <y>190</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -777,8 +777,8 @@
    <widget class="QRadioButton" name="fitRadio_4">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>460</y>
+      <x>540</x>
+      <y>190</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -793,8 +793,8 @@
    <widget class="QRadioButton" name="conditionRadio_5">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>580</y>
+      <x>640</x>
+      <y>310</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -809,8 +809,8 @@
    <widget class="QRadioButton" name="conditionRadio_1">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>580</y>
+      <x>240</x>
+      <y>310</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -825,8 +825,8 @@
    <widget class="QRadioButton" name="conditionRadio_2">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>580</y>
+      <x>340</x>
+      <y>310</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -841,8 +841,8 @@
    <widget class="QRadioButton" name="conditionRadio_3">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>580</y>
+      <x>440</x>
+      <y>310</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -857,8 +857,8 @@
    <widget class="QRadioButton" name="conditionRadio_4">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>580</y>
+      <x>540</x>
+      <y>310</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -873,8 +873,8 @@
    <widget class="QRadioButton" name="concentrationRadio_5">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>630</y>
+      <x>640</x>
+      <y>360</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -889,8 +889,8 @@
    <widget class="QRadioButton" name="concentrationRadio_1">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>630</y>
+      <x>240</x>
+      <y>360</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -905,8 +905,8 @@
    <widget class="QRadioButton" name="concentrationRadio_2">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>630</y>
+      <x>340</x>
+      <y>360</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -921,8 +921,8 @@
    <widget class="QRadioButton" name="concentrationRadio_3">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>630</y>
+      <x>440</x>
+      <y>360</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -937,8 +937,8 @@
    <widget class="QRadioButton" name="concentrationRadio_4">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>630</y>
+      <x>540</x>
+      <y>360</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -953,8 +953,8 @@
    <widget class="QRadioButton" name="trustFromOtherRadio_5">
     <property name="geometry">
      <rect>
-      <x>610</x>
-      <y>810</y>
+      <x>640</x>
+      <y>540</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -969,8 +969,8 @@
    <widget class="QRadioButton" name="trustFromOtherRadio_1">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>810</y>
+      <x>240</x>
+      <y>540</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -985,8 +985,8 @@
    <widget class="QRadioButton" name="trustFromOtherRadio_2">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>810</y>
+      <x>340</x>
+      <y>540</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -1001,8 +1001,8 @@
    <widget class="QRadioButton" name="trustFromOtherRadio_3">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>810</y>
+      <x>440</x>
+      <y>540</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -1017,8 +1017,8 @@
    <widget class="QRadioButton" name="trustFromOtherRadio_4">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>810</y>
+      <x>540</x>
+      <y>540</y>
       <width>21</width>
       <height>16</height>
      </rect>
@@ -1033,8 +1033,8 @@
    <widget class="QLabel" name="label_11">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>310</y>
+      <x>230</x>
+      <y>40</y>
       <width>31</width>
       <height>20</height>
      </rect>
@@ -1056,8 +1056,8 @@
    <widget class="QLabel" name="label_12">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>310</y>
+      <x>430</x>
+      <y>40</y>
       <width>31</width>
       <height>20</height>
      </rect>
@@ -1079,8 +1079,8 @@
    <widget class="QLabel" name="label_13">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>310</y>
+      <x>330</x>
+      <y>40</y>
       <width>31</width>
       <height>20</height>
      </rect>
@@ -1102,8 +1102,8 @@
    <widget class="QLabel" name="label_14">
     <property name="geometry">
      <rect>
-      <x>500</x>
-      <y>310</y>
+      <x>530</x>
+      <y>40</y>
       <width>31</width>
       <height>20</height>
      </rect>
@@ -1125,8 +1125,8 @@
    <widget class="QLabel" name="label_15">
     <property name="geometry">
      <rect>
-      <x>600</x>
-      <y>310</y>
+      <x>630</x>
+      <y>40</y>
       <width>31</width>
       <height>20</height>
      </rect>
@@ -1148,8 +1148,8 @@
    <widget class="QLabel" name="label_16">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>320</y>
+      <x>50</x>
+      <y>50</y>
       <width>91</width>
       <height>21</height>
      </rect>
@@ -1168,8 +1168,8 @@
    <widget class="QLabel" name="label_17">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>490</y>
+      <x>40</x>
+      <y>220</y>
       <width>121</width>
       <height>21</height>
      </rect>
@@ -1188,8 +1188,8 @@
    <widget class="QLabel" name="label_18">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>670</y>
+      <x>40</x>
+      <y>400</y>
       <width>111</width>
       <height>21</height>
      </rect>
@@ -1208,8 +1208,8 @@
    <widget class="QLabel" name="label_19">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>490</y>
+      <x>230</x>
+      <y>220</y>
       <width>31</width>
       <height>20</height>
      </rect>
@@ -1231,8 +1231,8 @@
    <widget class="QLabel" name="label_20">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>490</y>
+      <x>330</x>
+      <y>220</y>
       <width>31</width>
       <height>20</height>
      </rect>
@@ -1254,8 +1254,8 @@
    <widget class="QLabel" name="label_21">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>490</y>
+      <x>430</x>
+      <y>220</y>
       <width>31</width>
       <height>20</height>
      </rect>
@@ -1277,8 +1277,8 @@
    <widget class="QLabel" name="label_22">
     <property name="geometry">
      <rect>
-      <x>500</x>
-      <y>490</y>
+      <x>530</x>
+      <y>220</y>
       <width>31</width>
       <height>20</height>
      </rect>
@@ -1300,8 +1300,8 @@
    <widget class="QLabel" name="label_23">
     <property name="geometry">
      <rect>
-      <x>600</x>
-      <y>490</y>
+      <x>630</x>
+      <y>220</y>
       <width>31</width>
       <height>20</height>
      </rect>
@@ -1323,8 +1323,8 @@
    <widget class="QLabel" name="label_24">
     <property name="geometry">
      <rect>
-      <x>600</x>
-      <y>670</y>
+      <x>630</x>
+      <y>400</y>
       <width>31</width>
       <height>20</height>
      </rect>
@@ -1346,8 +1346,8 @@
    <widget class="QLabel" name="label_25">
     <property name="geometry">
      <rect>
-      <x>500</x>
-      <y>670</y>
+      <x>530</x>
+      <y>400</y>
       <width>31</width>
       <height>20</height>
      </rect>
@@ -1369,8 +1369,8 @@
    <widget class="QLabel" name="label_26">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>670</y>
+      <x>330</x>
+      <y>400</y>
       <width>31</width>
       <height>20</height>
      </rect>
@@ -1392,8 +1392,8 @@
    <widget class="QLabel" name="label_27">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>670</y>
+      <x>230</x>
+      <y>400</y>
       <width>31</width>
       <height>20</height>
      </rect>
@@ -1415,8 +1415,8 @@
    <widget class="QLabel" name="label_28">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>670</y>
+      <x>430</x>
+      <y>400</y>
       <width>31</width>
       <height>20</height>
      </rect>
@@ -1433,6 +1433,29 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignHCenter|Qt::AlignTop</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_29">
+    <property name="geometry">
+     <rect>
+      <x>219</x>
+      <y>10</y>
+      <width>441</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>低い</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>
@@ -2219,14 +2242,14 @@
   <slot>pushPastButtonSlot()</slot>
  </slots>
  <buttongroups>
-  <buttongroup name="trustMeRadio"/>
   <buttongroup name="trustFromOtherRadio"/>
-  <buttongroup name="conditionRadio"/>
-  <buttongroup name="trustOtherRadio"/>
-  <buttongroup name="concentrationRadio"/>
-  <buttongroup name="fitRadio"/>
   <buttongroup name="sleepRadio"/>
-  <buttongroup name="mealRadio"/>
   <buttongroup name="stressRadio"/>
+  <buttongroup name="trustMeRadio"/>
+  <buttongroup name="fitRadio"/>
+  <buttongroup name="conditionRadio"/>
+  <buttongroup name="concentrationRadio"/>
+  <buttongroup name="mealRadio"/>
+  <buttongroup name="trustOtherRadio"/>
  </buttongroups>
 </ui>
