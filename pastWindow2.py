@@ -24,6 +24,8 @@ import pandas as pd
 import datetime
 import sip
 
+from pastSubWindow import pastSubWindow
+
 FILE_PATH = 'test.csv' # 読み込むcsvファイル名
 COLUMN_NUM = 4 # csvファイルのカラム数（dateを除く）
 YEAR_LIST = ['2024', '2025', '2026']
@@ -183,6 +185,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.calendar.setGeometry(QtCore.QRect(1160, 400, 400, 350))
         self.calendar.setGridVisible(True)
         self.calendar.setVerticalHeaderFormat(QtWidgets.QCalendarWidget.NoVerticalHeader)
+        self.calendar.clicked.connect(self.onClickCalDate)
 
 
         MainWindow.setCentralWidget(self.centralwidget)
@@ -308,10 +311,27 @@ class Ui_MainWindow(QtWidgets.QWidget):
             self.rangeMode = 'week'
         self.drawPlt(startDate=dateRange['startDate'], endDate=dateRange['endDate'])
 
+
     def changeCalView(self):
+        """グラフの表示範囲に応じてカレンダーの表示を変更する処理
+        """
         year = int(self.comboBox.currentText())
         month = int(self.comboBox_2.currentText())
         self.calendar.setCurrentPage(year, month)
+
+
+    def onClickCalDate(self, date):
+        """カレンダーの日付部分をクリックしたとき
+        """
+        pdDate = pd.Timestamp(year=date.year(), month=date.month(), day=date.day())
+        if pdDate in self.df.index:
+            data = {
+                'date': pdDate,
+                'data': self.df.loc[pdDate]
+            }
+            subWindow = pastSubWindow(data=data)
+            subWindow.show()
+
 
     # ********************************
     # グラフ描画関数
