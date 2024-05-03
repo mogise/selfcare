@@ -648,25 +648,6 @@ class Ui_MainWindow(object):
         self.label_29.setText(_translate("MainWindow", "低い　　　　　　　　　　　　　　　　　　　　　　　  　 高い"))
         self.menu.setTitle(_translate("MainWindow", "セルフチェック"))
         
-    def r_buttonSlot1(elem):
-        elem = 1
-        return elem
-    def r_buttonSlot2(elem):
-        elem = 2
-        return elem
-    def r_buttonSlot3(elem):
-        elem = 3
-        return elem
-    def r_buttonSlot4(elem):
-        elem = 4
-        return elem
-    def r_buttonSlot5(elem):
-        elem = 5
-        return elem
-    def pushResistButtonSlot():
-        
-    def pushPastButtonSlot():
-    
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
