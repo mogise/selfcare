@@ -137,6 +137,37 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.label_10.setFont(font)
         self.label_10.setObjectName("label_10")
+
+
+        # ラジオボタン関連処理 2024/05/03 寺島
+
+        groupNameList = ['sleep', 'meal','fit','stress','condition','concentration','trustMe','trustOther','trustFromOther']
+        self.radioGroups = {}
+
+        radioSizeX = 21
+        radioSizeY = 16
+        radioBasePosX = 240
+        radioBasePosY = 90
+        dY = 0
+
+        for i in range(9):
+            self.radioGroups[groupNameList[i]] = QtWidgets.QButtonGroup(MainWindow)
+            for j in range(5):
+                objectName = groupNameList[i] + '_' + str(j+1)
+                posX = radioBasePosX + (100 * j)
+                posY = radioBasePosY + dY
+                
+                radio = self.makeRadio(objectName, posX, posY)
+                self.radioGroups[groupNameList[i]].addButton(radio)
+            dY += 50
+            if (i+1)%3 == 0:
+                dY += 20
+                
+                
+
+
+        self.sleepRadioGroup = QtWidgets.QButtonGroup(self.centralwidget)
+
         self.sleepRadio_1 = QtWidgets.QRadioButton(self.centralwidget)
         self.sleepRadio_1.setGeometry(QtCore.QRect(240, 90, 21, 16))
         self.sleepRadio_1.setText("")
@@ -380,6 +411,9 @@ class Ui_MainWindow(object):
         self.trustFromOtherRadio_4.setText("")
         self.trustFromOtherRadio_4.setObjectName("trustFromOtherRadio_4")
         self.trustFromOtherRadio.addButton(self.trustFromOtherRadio_4)
+        # ラジオボタン関連ここまで
+
+
         self.label_11 = QtWidgets.QLabel(self.centralwidget)
         self.label_11.setGeometry(QtCore.QRect(230, 40, 31, 20))
         font = QtGui.QFont()
@@ -648,6 +682,25 @@ class Ui_MainWindow(object):
         self.label_29.setText(_translate("MainWindow", "低い　　　　　　　　　　　　　　　　　　　　　　　  　 高い"))
         self.menu.setTitle(_translate("MainWindow", "セルフチェック"))
         
+    def r_buttonSlot1(elem):
+        elem = 1
+        return elem
+    def r_buttonSlot2(elem):
+        elem = 2
+        return elem
+    def r_buttonSlot3(elem):
+        elem = 3
+        return elem
+    def r_buttonSlot4(elem):
+        elem = 4
+        return elem
+    def r_buttonSlot5(elem):
+        elem = 5
+        return elem
+    def pushResistButtonSlot():
+        
+    def pushPastButtonSlot():
+    
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
