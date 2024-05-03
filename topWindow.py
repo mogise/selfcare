@@ -12,6 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainWindow(object):
+    data={'sleep':3,'meal':3,'fit':3,'stress':3,'condition':3,'concentration':3,'trustMe':3,'trustOther':3,'trustFromOther':3}
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 1000)
