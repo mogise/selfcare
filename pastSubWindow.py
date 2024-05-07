@@ -7,24 +7,36 @@ import datetime
 class pastSubWindow(QtWidgets.QWidget):
   def __init__(self, parent=None, data=None):
     self.w = QtWidgets.QDialog(parent)
-    self.w.resize(800, 1000)
+    self.w.resize(800, 700)
 
     self.labelFont = QtGui.QFont()
     self.labelFont.setFamily("メイリオ")
-    self.labelFont.setPointSize(12)
+    self.labelFont.setPointSize(16)
+    self.labelFont.setBold(True)
 
     date = data['date']
     strDate = date.strftime('%Y/%m/%d')
 
-    self.title = self.makeLabel(strDate + ' のセルフチェック記録', None, 50, 10)
+    self.title = self.makeLabel(strDate + ' のセルフチェック記録', None, 50, 20)
+    
+    self.labelFont.setPointSize(12)
     self.cat_1 = self.makeLabel('【生活基盤】', None, 50, 100)
-    self.cat_2 = self.makeLabel('【心と体のサイン】', None, 50, 300)
-    self.cat_3 = self.makeLabel('【信頼のサイン】', None, 50, 500)
-    self.cat_4 = self.makeLabel('【予防・回復対処】', None, 50, 700)
-    self.cat_5 = self.makeLabel('【気付き・備考】', None, 400, 700)
+    self.cat_2 = self.makeLabel('【心と体のサイン】', None, 250, 100)
+    self.cat_3 = self.makeLabel('【信頼のサイン】', None, 500, 100)
+    self.cat_4 = self.makeLabel('【予防・回復対処】', None, 50, 350)
+    self.cat_5 = self.makeLabel('【気付き・備考】', None, 400, 350)
 
+    self.labelFont.setBold(False)
     self.labelFont.setPointSize(11)
     self.cat_1_1 = self.makeLabel('睡眠', str(data['data']['睡眠']), 70, 150)
+    self.cat_1_2 = self.makeLabel('食事', str(data['data']['食事']), 70, 200)
+    self.cat_1_3 = self.makeLabel('運動', str(data['data']['運動']), 70, 250)
+    self.cat_2_1 = self.makeLabel('不安・ストレスが無い', str(data['data']['不安・ストレス']), 270, 150)
+    self.cat_2_2 = self.makeLabel('身体の調子', str(data['data']['身体の調子']), 270, 200)
+    self.cat_2_3 = self.makeLabel('集中力が高い', str(data['data']['集中力']), 270, 250)
+    self.cat_3_1 = self.makeLabel('自分を信頼', str(data['data']['自分を信頼']), 520, 150)
+    self.cat_3_2 = self.makeLabel('他人を信頼', str(data['data']['他人を信頼']), 520, 200)
+    self.cat_3_3 = self.makeLabel('他人から信頼', str(data['data']['他人から信頼']), 520, 250)
 
   def show(self):
     self.w.exec_()
@@ -41,5 +53,5 @@ class pastSubWindow(QtWidgets.QWidget):
       label.setText(title)
     else:
       label.setText(title + ': ' + content)
-
+      
     return label

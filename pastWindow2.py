@@ -70,7 +70,7 @@ class MatplotlibCanvas(FigureCanvasQTAgg):
         xLimEnd = num2date(date2num(endDate) + 0.5)
         self.ax.set_xlim([xLimStart, xLimEnd]) # 描画範囲を指定
 
-        #凡例の設定
+        # 凡例の設定
         self.ax.legend(prop = {'family': 'MS Gothic'}, loc="upper center", ncol=4)
         
         # 目盛の設定
@@ -166,6 +166,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.groupBox_2.setObjectName("groupBox_2")
         
         
+        # 表示する項目のラジオボタン
         self.radioBtn_1 = QtWidgets.QRadioButton(self.groupBox_2)
         self.radioBtn_1.setGeometry(QtCore.QRect(30, 30, 190, 70))
         self.radioBtn_1.setFont(font)
