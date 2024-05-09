@@ -25,6 +25,7 @@ class Ui_MainWindow(object):
         MainWindow.setFont(font)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+        # カレンダー 非表示 5/8 山本
         #self.calendarWidget = QtWidgets.QCalendarWidget(self.centralwidget)
         #self.calendarWidget.setGeometry(QtCore.QRect(20, 700, 411, 221))
         #self.calendarWidget.setObjectName("calendarWidget")
@@ -45,7 +46,7 @@ class Ui_MainWindow(object):
         self.plainTextEdit_2.setFont(font)
         self.plainTextEdit_2.setObjectName("plainTextEdit_2")
         self.pushButton_Past = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Past.setGeometry(QtCore.QRect(120, 740, 181, 51))
+        self.pushButton_Past.setGeometry(QtCore.QRect(120, 740, 181, 51))   #配置変更 5/8 山本
         font = QtGui.QFont()
         font.setPointSize(15)
         font.setBold(True)
@@ -53,7 +54,7 @@ class Ui_MainWindow(object):
         self.pushButton_Past.setFont(font)
         self.pushButton_Past.setObjectName("pushButton_Past")
         self.pushButton_Resist = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Resist.setGeometry(QtCore.QRect(500, 740, 181, 51))
+        self.pushButton_Resist.setGeometry(QtCore.QRect(500, 740, 181, 51)) #配置変更 5/8 山本
         font = QtGui.QFont()
         font.setPointSize(15)
         font.setBold(True)
