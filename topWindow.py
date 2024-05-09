@@ -10,21 +10,24 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+# ***** 追加インポート5/8 山本
+import csv
+import datetime
 
 class Ui_MainWindow(object):
     data={'sleep':3,'meal':3,'fit':3,'stress':3,'condition':3,'concentration':3,'trustMe':3,'trustOther':3,'trustFromOther':3}
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 1000)
+        MainWindow.resize(800, 840)
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
         MainWindow.setFont(font)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.calendarWidget = QtWidgets.QCalendarWidget(self.centralwidget)
-        self.calendarWidget.setGeometry(QtCore.QRect(20, 700, 411, 221))
-        self.calendarWidget.setObjectName("calendarWidget")
+        #self.calendarWidget = QtWidgets.QCalendarWidget(self.centralwidget)
+        #self.calendarWidget.setGeometry(QtCore.QRect(20, 700, 411, 221))
+        #self.calendarWidget.setObjectName("calendarWidget")
         self.plainTextEdit = QtWidgets.QPlainTextEdit(self.centralwidget)
         self.plainTextEdit.setGeometry(QtCore.QRect(20, 590, 351, 91))
         font = QtGui.QFont()
@@ -42,7 +45,7 @@ class Ui_MainWindow(object):
         self.plainTextEdit_2.setFont(font)
         self.plainTextEdit_2.setObjectName("plainTextEdit_2")
         self.pushButton_Past = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Past.setGeometry(QtCore.QRect(510, 750, 181, 51))
+        self.pushButton_Past.setGeometry(QtCore.QRect(120, 740, 181, 51))
         font = QtGui.QFont()
         font.setPointSize(15)
         font.setBold(True)
@@ -50,7 +53,7 @@ class Ui_MainWindow(object):
         self.pushButton_Past.setFont(font)
         self.pushButton_Past.setObjectName("pushButton_Past")
         self.pushButton_Resist = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Resist.setGeometry(QtCore.QRect(510, 840, 181, 51))
+        self.pushButton_Resist.setGeometry(QtCore.QRect(500, 740, 181, 51))
         font = QtGui.QFont()
         font.setPointSize(15)
         font.setBold(True)
@@ -736,6 +739,36 @@ class Ui_MainWindow(object):
     
     # ***** ラジオボタン関連の関数ここまで
     
+    
+    # ***** 「登録」ボタン押下時処理 5/8 山本
+    def pushResistButtonSlot(self):
+        for name in self.groupNameList:
+            val = self.radioGroupDict[name].CheckedID()
+            self.write_to_csv(val + ',')
+    # ***** 「登録」ボタン押下時処理 ここまで
+    
+    
+    # ***** csvへ書き込むための関数 5/8 山本
+    def write_to_csv(self,data):
+        """各要素の値とテキストを備考に書き込む関数"""
+        with open('test.csv','a',encoding='utf-8') as f:# 現状とりあえずtest.csvで設定してあります。
+                            #'a'で追記(append)モード。
+            writer = csv.writer(f)
+            writer.writerow(datetime.date.today()+',') #タイムスタンプ(date)
+            for i in range(data):
+                # ラジオボタンの値を取得
+                if self.radio.setCheckedID(1):
+                    data = 1
+                elif self.radio.setChecked(2):
+                    data = 2
+                elif self.radio.setChecked(3):
+                    data = 3
+                elif self.radio.setChecked(4):
+                    data = 4
+                elif self.radio.setChecked(5):
+                    data = 5
+                writer.writerow(data)                #ラジオボタンの値とテキストを書き込む
+    # ***** csvへ書き込むための関数 ここまで
     
     
     def r_buttonSlot1(elem):
