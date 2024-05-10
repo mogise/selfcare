@@ -183,10 +183,18 @@ class Ui_MainWindow(QtWidgets.QWidget):
 
         # カレンダー
         self.calendar = QtWidgets.QCalendarWidget(MainWindow)
+        self.calendar.setFirstDayOfWeek(QtCore.Qt.DayOfWeek.Monday)
         self.calendar.setGeometry(QtCore.QRect(1160, 400, 400, 350))
         self.calendar.setGridVisible(True)
         self.calendar.setVerticalHeaderFormat(QtWidgets.QCalendarWidget.NoVerticalHeader)
         self.calendar.clicked.connect(self.onClickCalDate)
+
+        # カレンダーの注記
+        font.setPointSize(8)
+        self.label = QtWidgets.QLabel(MainWindow)
+        self.label.setGeometry(QtCore.QRect(1160, 730, 400, 80))
+        self.label.setFont(font)
+        self.label.setText("↑ 日付をクリックして詳細を確認")
 
 
         MainWindow.setCentralWidget(self.centralwidget)
