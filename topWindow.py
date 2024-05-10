@@ -458,6 +458,7 @@ class Ui_MainWindow(object):
     
     # ***** 「登録」ボタン押下時処理 5/8 山本
     # *****              編集・追記 5/9 山本
+    # *****              編集・追記 5/10 山本
     def pushResistButtonSlot(self):
         #データをリストとしてまとめる
         data_to_write = [str(datetime.date.today())]#タイムスタンプ(date)を追加
