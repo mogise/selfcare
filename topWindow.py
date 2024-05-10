@@ -15,7 +15,7 @@ import csv
 import datetime
 
 class Ui_MainWindow(object):
-    data={'sleep':3,'meal':3,'fit':3,'stress':3,'condition':3,'concentration':3,'trustMe':3,'trustOther':3,'trustFromOther':3}
+    #data={'sleep':3,'meal':3,'fit':3,'stress':3,'condition':3,'concentration':3,'trustMe':3,'trustOther':3,'trustFromOther':3}
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 840)
@@ -49,6 +49,7 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.pushButton_Past.setFont(font)
         self.pushButton_Past.setObjectName("pushButton_Past")
+        self.pushButton_Past.clicked.connect(self.pushPastButtonSlot)
         self.pushButton_Resist = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_Resist.setGeometry(QtCore.QRect(500, 740, 181, 51)) #配置変更 5/8 山本
         font = QtGui.QFont()
@@ -57,6 +58,7 @@ class Ui_MainWindow(object):
         font.setWeight(75)
         self.pushButton_Resist.setFont(font)
         self.pushButton_Resist.setObjectName("pushButton_Resist")
+        self.pushButton_Resist.clicked.connect(self.pushResistButtonSlot)
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
         self.label_2.setGeometry(QtCore.QRect(0, 0, 141, 31))
         font = QtGui.QFont()
@@ -447,25 +449,40 @@ class Ui_MainWindow(object):
     # ***** 「登録」ボタン押下時処理 5/8 山本
     # *****              編集・追記 5/9 山本
     def pushResistButtonSlot(self):
+        #データをリストとしてまとめる
+        data_to_write = [str(datetime.date.today())]#タイムスタンプ(date)を追加
+        
+        #各ラジオボタンの値を追加
+        for name in self.groupNameList:
+            val = self.radioGroupDict[name].checkedId()
+            data_to_write.append(str(val))
+            
+        #テキストエディタの内容を追加
+        notes = self.plainTextEdit.toPlainText()
+        notes2 = self.plainTextEdit_2.toPlainText()
+        #リストに追加
+        data_to_write.append(notes)
+        data_to_write.append(notes2)
+        
+        # csvにリスト内のデータを書き込む
         with open('test.csv','a',encoding='utf-8') as f:# 現状とりあえずtest.csvで設定してあります。
                             #'a'で追記(append)モード。
             writer = csv.writer(f)
-            writer.writerow(datetime.date.today()+',') #タイムスタンプ(date)
-        #   ラジオボタンの値を取得ー＞csvに書き込み
-        for name in self.groupNameList:
-            val = self.radioGroupDict[name].CheckedId()
-            writer.writerow(val + ",")
-        writer.writerow()
-        # ***** 完了の旨のメッセージボックスを表示 5/10 山本
-        writer.writerow()
-        msg_box = QtWidgets.QMessageBox()
-        msg_box.setIcon(msg_box.information)
-        msg_box.setText('登録完了')
-        msg_box.setInformativeText('本日のセルフチェックの登録が完了しました。')
-        msg_box.setStandardButtons(msg_box.Ok)
-        # メッセージボックスを表示
-        msg_box.exec_()
+            writer.writerow(data_to_write)
+            # ***** 完了の旨のメッセージボックスを表示 5/10 山本
+            msg_box = QtWidgets.QMessageBox()
+            msg_box.setIcon(QtWidgets.QMessageBox.Information)
+            msg_box.setText('登録完了')
+            msg_box.setInformativeText('本日のセルフチェックの登録が完了しました。')
+            msg_box.setStandardButtons(QtWidgets.QMessageBox.Ok)
+            # メッセージボックスを表示
+            msg_box.exec_()
     # ***** 「登録」ボタン押下時処理 ここまで
+    
+    # ***** 「過去のデータを見る」ボタン押下時処理 5/10 山本
+    def pushPastButtonSlot():
+        pass
+    # ***** 「過去のデータを見る」ボタン押下時処理 ここまで
     
     
 if __name__ == "__main__":
