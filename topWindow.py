@@ -25,12 +25,8 @@ class Ui_MainWindow(object):
         MainWindow.setFont(font)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        # カレンダー 非表示 5/8 山本
-        #self.calendarWidget = QtWidgets.QCalendarWidget(self.centralwidget)
-        #self.calendarWidget.setGeometry(QtCore.QRect(20, 700, 411, 221))
-        #self.calendarWidget.setObjectName("calendarWidget")
         self.plainTextEdit = QtWidgets.QPlainTextEdit(self.centralwidget)
-        self.plainTextEdit.setGeometry(QtCore.QRect(20, 590, 351, 91))
+        self.plainTextEdit.setGeometry(QtCore.QRect(20, 625, 351, 91))
         font = QtGui.QFont()
         font.setPointSize(11)
         font.setBold(True)
@@ -38,7 +34,7 @@ class Ui_MainWindow(object):
         self.plainTextEdit.setFont(font)
         self.plainTextEdit.setObjectName("plainTextEdit")
         self.plainTextEdit_2 = QtWidgets.QPlainTextEdit(self.centralwidget)
-        self.plainTextEdit_2.setGeometry(QtCore.QRect(410, 590, 371, 91))
+        self.plainTextEdit_2.setGeometry(QtCore.QRect(410, 625, 351, 91))
         font = QtGui.QFont()
         font.setPointSize(11)
         font.setBold(True)
@@ -181,252 +177,6 @@ class Ui_MainWindow(object):
 
         # ***** ラジオボタン設置ここまで
 
-
-
-        # self.sleepRadioGroup = QtWidgets.QButtonGroup(self.centralwidget)
-        # self.sleepRadio_1 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.sleepRadio_1.setGeometry(QtCore.QRect(240, 90, 21, 16))
-        # self.sleepRadio_1.setText("")
-        # self.sleepRadio_1.setObjectName("sleepRadio_1")
-        # self.sleepRadio = QtWidgets.QButtonGroup(MainWindow)
-        # self.sleepRadio.setObjectName("sleepRadio")
-        # self.sleepRadio.addButton(self.sleepRadio_1)
-        # self.sleepRadio_2 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.sleepRadio_2.setGeometry(QtCore.QRect(340, 90, 21, 16))
-        # self.sleepRadio_2.setText("")
-        # self.sleepRadio_2.setObjectName("sleepRadio_2")
-        # self.sleepRadio.addButton(self.sleepRadio_2)
-        # self.sleepRadio_3 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.sleepRadio_3.setGeometry(QtCore.QRect(440, 90, 21, 16))
-        # self.sleepRadio_3.setText("")
-        # self.sleepRadio_3.setObjectName("sleepRadio_3")
-        # self.sleepRadio.addButton(self.sleepRadio_3)
-        # self.sleepRadio_4 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.sleepRadio_4.setGeometry(QtCore.QRect(540, 90, 21, 16))
-        # self.sleepRadio_4.setText("")
-        # self.sleepRadio_4.setObjectName("sleepRadio_4")
-        # self.sleepRadio.addButton(self.sleepRadio_4)
-        # self.sleepRadio_5 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.sleepRadio_5.setGeometry(QtCore.QRect(640, 90, 21, 16))
-        # self.sleepRadio_5.setText("")
-        # self.sleepRadio_5.setObjectName("sleepRadio_5")
-        # self.sleepRadio.addButton(self.sleepRadio_5)
-        # self.trustMeRadio_4 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.trustMeRadio_4.setGeometry(QtCore.QRect(540, 440, 21, 16))
-        # self.trustMeRadio_4.setText("")
-        # self.trustMeRadio_4.setObjectName("trustMeRadio_4")
-        # self.trustMeRadio = QtWidgets.QButtonGroup(MainWindow)
-        # self.trustMeRadio.setObjectName("trustMeRadio")
-        # self.trustMeRadio.addButton(self.trustMeRadio_4)
-        # self.trustMeRadio_1 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.trustMeRadio_1.setGeometry(QtCore.QRect(240, 440, 21, 16))
-        # self.trustMeRadio_1.setText("")
-        # self.trustMeRadio_1.setObjectName("trustMeRadio_1")
-        # self.trustMeRadio.addButton(self.trustMeRadio_1)
-        # self.trustMeRadio_3 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.trustMeRadio_3.setGeometry(QtCore.QRect(440, 440, 21, 16))
-        # self.trustMeRadio_3.setText("")
-        # self.trustMeRadio_3.setObjectName("trustMeRadio_3")
-        # self.trustMeRadio.addButton(self.trustMeRadio_3)
-        # self.trustMeRadio_2 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.trustMeRadio_2.setGeometry(QtCore.QRect(340, 440, 21, 16))
-        # self.trustMeRadio_2.setText("")
-        # self.trustMeRadio_2.setObjectName("trustMeRadio_2")
-        # self.trustMeRadio.addButton(self.trustMeRadio_2)
-        # self.trustMeRadio_5 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.trustMeRadio_5.setGeometry(QtCore.QRect(640, 440, 21, 16))
-        # self.trustMeRadio_5.setText("")
-        # self.trustMeRadio_5.setObjectName("trustMeRadio_5")
-        # self.trustMeRadio.addButton(self.trustMeRadio_5)
-        # self.mealRadio_3 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.mealRadio_3.setGeometry(QtCore.QRect(440, 140, 21, 16))
-        # self.mealRadio_3.setText("")
-        # self.mealRadio_3.setObjectName("mealRadio_3")
-        # self.mealRadio = QtWidgets.QButtonGroup(MainWindow)
-        # self.mealRadio.setObjectName("mealRadio")
-        # self.mealRadio.addButton(self.mealRadio_3)
-        # self.mealRadio_5 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.mealRadio_5.setGeometry(QtCore.QRect(640, 140, 21, 16))
-        # self.mealRadio_5.setText("")
-        # self.mealRadio_5.setObjectName("mealRadio_5")
-        # self.mealRadio.addButton(self.mealRadio_5)
-        # self.mealRadio_1 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.mealRadio_1.setGeometry(QtCore.QRect(240, 140, 21, 16))
-        # self.mealRadio_1.setText("")
-        # self.mealRadio_1.setObjectName("mealRadio_1")
-        # self.mealRadio.addButton(self.mealRadio_1)
-        # self.mealRadio_2 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.mealRadio_2.setGeometry(QtCore.QRect(340, 140, 21, 16))
-        # self.mealRadio_2.setText("")
-        # self.mealRadio_2.setObjectName("mealRadio_2")
-        # self.mealRadio.addButton(self.mealRadio_2)
-        # self.mealRadio_4 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.mealRadio_4.setGeometry(QtCore.QRect(540, 140, 21, 16))
-        # self.mealRadio_4.setText("")
-        # self.mealRadio_4.setObjectName("mealRadio_4")
-        # self.mealRadio.addButton(self.mealRadio_4)
-        # self.trustOtherRadio_5 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.trustOtherRadio_5.setGeometry(QtCore.QRect(640, 490, 21, 16))
-        # self.trustOtherRadio_5.setText("")
-        # self.trustOtherRadio_5.setObjectName("trustOtherRadio_5")
-        # self.trustOtherRadio = QtWidgets.QButtonGroup(MainWindow)
-        # self.trustOtherRadio.setObjectName("trustOtherRadio")
-        # self.trustOtherRadio.addButton(self.trustOtherRadio_5)
-        # self.trustOtherRadio_1 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.trustOtherRadio_1.setGeometry(QtCore.QRect(240, 490, 21, 16))
-        # self.trustOtherRadio_1.setText("")
-        # self.trustOtherRadio_1.setObjectName("trustOtherRadio_1")
-        # self.trustOtherRadio.addButton(self.trustOtherRadio_1)
-        # self.trustOtherRadio_2 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.trustOtherRadio_2.setGeometry(QtCore.QRect(340, 490, 21, 16))
-        # self.trustOtherRadio_2.setText("")
-        # self.trustOtherRadio_2.setObjectName("trustOtherRadio_2")
-        # self.trustOtherRadio.addButton(self.trustOtherRadio_2)
-        # self.trustOtherRadio_3 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.trustOtherRadio_3.setGeometry(QtCore.QRect(440, 490, 21, 16))
-        # self.trustOtherRadio_3.setText("")
-        # self.trustOtherRadio_3.setObjectName("trustOtherRadio_3")
-        # self.trustOtherRadio.addButton(self.trustOtherRadio_3)
-        # self.trustOtherRadio_4 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.trustOtherRadio_4.setGeometry(QtCore.QRect(540, 490, 21, 16))
-        # self.trustOtherRadio_4.setText("")
-        # self.trustOtherRadio_4.setObjectName("trustOtherRadio_4")
-        # self.trustOtherRadio.addButton(self.trustOtherRadio_4)
-        # self.stressRadio_5 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.stressRadio_5.setGeometry(QtCore.QRect(640, 260, 21, 16))
-        # self.stressRadio_5.setText("")
-        # self.stressRadio_5.setObjectName("stressRadio_5")
-        # self.stressRadio = QtWidgets.QButtonGroup(MainWindow)
-        # self.stressRadio.setObjectName("stressRadio")
-        # self.stressRadio.addButton(self.stressRadio_5)
-        # self.stressRadio_1 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.stressRadio_1.setGeometry(QtCore.QRect(240, 260, 21, 16))
-        # self.stressRadio_1.setText("")
-        # self.stressRadio_1.setObjectName("stressRadio_1")
-        # self.stressRadio.addButton(self.stressRadio_1)
-        # self.stressRadio_2 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.stressRadio_2.setGeometry(QtCore.QRect(340, 260, 21, 16))
-        # self.stressRadio_2.setText("")
-        # self.stressRadio_2.setObjectName("stressRadio_2")
-        # self.stressRadio.addButton(self.stressRadio_2)
-        # self.stressRadio_3 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.stressRadio_3.setGeometry(QtCore.QRect(440, 260, 21, 16))
-        # self.stressRadio_3.setText("")
-        # self.stressRadio_3.setObjectName("stressRadio_3")
-        # self.stressRadio.addButton(self.stressRadio_3)
-        # self.stressRadio_4 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.stressRadio_4.setGeometry(QtCore.QRect(540, 260, 21, 16))
-        # self.stressRadio_4.setText("")
-        # self.stressRadio_4.setObjectName("stressRadio_4")
-        # self.stressRadio.addButton(self.stressRadio_4)
-        # self.fitRadio_5 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.fitRadio_5.setGeometry(QtCore.QRect(640, 190, 21, 16))
-        # self.fitRadio_5.setText("")
-        # self.fitRadio_5.setObjectName("fitRadio_5")
-        # self.fitRadio = QtWidgets.QButtonGroup(MainWindow)
-        # self.fitRadio.setObjectName("fitRadio")
-        # self.fitRadio.addButton(self.fitRadio_5)
-        # self.fitRadio_1 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.fitRadio_1.setGeometry(QtCore.QRect(240, 190, 21, 16))
-        # self.fitRadio_1.setText("")
-        # self.fitRadio_1.setObjectName("fitRadio_1")
-        # self.fitRadio.addButton(self.fitRadio_1)
-        # self.fitRadio_2 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.fitRadio_2.setGeometry(QtCore.QRect(340, 190, 21, 16))
-        # self.fitRadio_2.setText("")
-        # self.fitRadio_2.setObjectName("fitRadio_2")
-        # self.fitRadio.addButton(self.fitRadio_2)
-        # self.fitRadio_3 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.fitRadio_3.setGeometry(QtCore.QRect(440, 190, 21, 16))
-        # self.fitRadio_3.setText("")
-        # self.fitRadio_3.setObjectName("fitRadio_3")
-        # self.fitRadio.addButton(self.fitRadio_3)
-        # self.fitRadio_4 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.fitRadio_4.setGeometry(QtCore.QRect(540, 190, 21, 16))
-        # self.fitRadio_4.setText("")
-        # self.fitRadio_4.setObjectName("fitRadio_4")
-        # self.fitRadio.addButton(self.fitRadio_4)
-        # self.conditionRadio_5 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.conditionRadio_5.setGeometry(QtCore.QRect(640, 310, 21, 16))
-        # self.conditionRadio_5.setText("")
-        # self.conditionRadio_5.setObjectName("conditionRadio_5")
-        # self.conditionRadio = QtWidgets.QButtonGroup(MainWindow)
-        # self.conditionRadio.setObjectName("conditionRadio")
-        # self.conditionRadio.addButton(self.conditionRadio_5)
-        # self.conditionRadio_1 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.conditionRadio_1.setGeometry(QtCore.QRect(240, 310, 21, 16))
-        # self.conditionRadio_1.setText("")
-        # self.conditionRadio_1.setObjectName("conditionRadio_1")
-        # self.conditionRadio.addButton(self.conditionRadio_1)
-        # self.conditionRadio_2 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.conditionRadio_2.setGeometry(QtCore.QRect(340, 310, 21, 16))
-        # self.conditionRadio_2.setText("")
-        # self.conditionRadio_2.setObjectName("conditionRadio_2")
-        # self.conditionRadio.addButton(self.conditionRadio_2)
-        # self.conditionRadio_3 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.conditionRadio_3.setGeometry(QtCore.QRect(440, 310, 21, 16))
-        # self.conditionRadio_3.setText("")
-        # self.conditionRadio_3.setObjectName("conditionRadio_3")
-        # self.conditionRadio.addButton(self.conditionRadio_3)
-        # self.conditionRadio_4 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.conditionRadio_4.setGeometry(QtCore.QRect(540, 310, 21, 16))
-        # self.conditionRadio_4.setText("")
-        # self.conditionRadio_4.setObjectName("conditionRadio_4")
-        # self.conditionRadio.addButton(self.conditionRadio_4)
-        # self.concentrationRadio_5 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.concentrationRadio_5.setGeometry(QtCore.QRect(640, 360, 21, 16))
-        # self.concentrationRadio_5.setText("")
-        # self.concentrationRadio_5.setObjectName("concentrationRadio_5")
-        # self.concentrationRadio = QtWidgets.QButtonGroup(MainWindow)
-        # self.concentrationRadio.setObjectName("concentrationRadio")
-        # self.concentrationRadio.addButton(self.concentrationRadio_5)
-        # self.concentrationRadio_1 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.concentrationRadio_1.setGeometry(QtCore.QRect(240, 360, 21, 16))
-        # self.concentrationRadio_1.setText("")
-        # self.concentrationRadio_1.setObjectName("concentrationRadio_1")
-        # self.concentrationRadio.addButton(self.concentrationRadio_1)
-        # self.concentrationRadio_2 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.concentrationRadio_2.setGeometry(QtCore.QRect(340, 360, 21, 16))
-        # self.concentrationRadio_2.setText("")
-        # self.concentrationRadio_2.setObjectName("concentrationRadio_2")
-        # self.concentrationRadio.addButton(self.concentrationRadio_2)
-        # self.concentrationRadio_3 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.concentrationRadio_3.setGeometry(QtCore.QRect(440, 360, 21, 16))
-        # self.concentrationRadio_3.setText("")
-        # self.concentrationRadio_3.setObjectName("concentrationRadio_3")
-        # self.concentrationRadio.addButton(self.concentrationRadio_3)
-        # self.concentrationRadio_4 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.concentrationRadio_4.setGeometry(QtCore.QRect(540, 360, 21, 16))
-        # self.concentrationRadio_4.setText("")
-        # self.concentrationRadio_4.setObjectName("concentrationRadio_4")
-        # self.concentrationRadio.addButton(self.concentrationRadio_4)
-        # self.trustFromOtherRadio_5 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.trustFromOtherRadio_5.setGeometry(QtCore.QRect(640, 540, 21, 16))
-        # self.trustFromOtherRadio_5.setText("")
-        # self.trustFromOtherRadio_5.setObjectName("trustFromOtherRadio_5")
-        # self.trustFromOtherRadio = QtWidgets.QButtonGroup(MainWindow)
-        # self.trustFromOtherRadio.setObjectName("trustFromOtherRadio")
-        # self.trustFromOtherRadio.addButton(self.trustFromOtherRadio_5)
-        # self.trustFromOtherRadio_1 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.trustFromOtherRadio_1.setGeometry(QtCore.QRect(240, 540, 21, 16))
-        # self.trustFromOtherRadio_1.setText("")
-        # self.trustFromOtherRadio_1.setObjectName("trustFromOtherRadio_1")
-        # self.trustFromOtherRadio.addButton(self.trustFromOtherRadio_1)
-        # self.trustFromOtherRadio_2 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.trustFromOtherRadio_2.setGeometry(QtCore.QRect(340, 540, 21, 16))
-        # self.trustFromOtherRadio_2.setText("")
-        # self.trustFromOtherRadio_2.setObjectName("trustFromOtherRadio_2")
-        # self.trustFromOtherRadio.addButton(self.trustFromOtherRadio_2)
-        # self.trustFromOtherRadio_3 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.trustFromOtherRadio_3.setGeometry(QtCore.QRect(440, 540, 21, 16))
-        # self.trustFromOtherRadio_3.setText("")
-        # self.trustFromOtherRadio_3.setObjectName("trustFromOtherRadio_3")
-        # self.trustFromOtherRadio.addButton(self.trustFromOtherRadio_3)
-        # self.trustFromOtherRadio_4 = QtWidgets.QRadioButton(self.centralwidget)
-        # self.trustFromOtherRadio_4.setGeometry(QtCore.QRect(540, 540, 21, 16))
-        # self.trustFromOtherRadio_4.setText("")
-        # self.trustFromOtherRadio_4.setObjectName("trustFromOtherRadio_4")
-        # self.trustFromOtherRadio.addButton(self.trustFromOtherRadio_4)
 
 
         self.label_11 = QtWidgets.QLabel(self.centralwidget)
@@ -610,53 +360,6 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menu.menuAction())
 
         self.retranslateUi(MainWindow)
-        # self.sleepRadio_1.toggled['bool'].connect(self.r_buttonSlot1) # type: ignore
-        # self.mealRadio_1.toggled['bool'].connect(self.r_buttonSlot1) # type: ignore
-        # self.fitRadio_1.toggled['bool'].connect(self.r_buttonSlot1) # type: ignore
-        # self.stressRadio_1.toggled['bool'].connect(self.r_buttonSlot1) # type: ignore
-        # self.conditionRadio_1.toggled['bool'].connect(self.r_buttonSlot1) # type: ignore
-        # self.concentrationRadio_1.toggled['bool'].connect(self.r_buttonSlot1) # type: ignore
-        # self.trustMeRadio_1.toggled['bool'].connect(self.r_buttonSlot1) # type: ignore
-        # self.trustOtherRadio_1.toggled['bool'].connect(self.r_buttonSlot1) # type: ignore
-        # self.trustFromOtherRadio_1.toggled['bool'].connect(self.r_buttonSlot1) # type: ignore
-        # self.mealRadio_2.toggled['bool'].connect(self.r_buttonSlot2) # type: ignore
-        # self.sleepRadio_2.toggled['bool'].connect(self.r_buttonSlot2) # type: ignore
-        # self.fitRadio_2.toggled['bool'].connect(self.r_buttonSlot2) # type: ignore
-        # self.stressRadio_2.toggled['bool'].connect(self.r_buttonSlot2) # type: ignore
-        # self.conditionRadio_2.toggled['bool'].connect(self.r_buttonSlot2) # type: ignore
-        # self.concentrationRadio_2.toggled['bool'].connect(self.r_buttonSlot2) # type: ignore
-        # self.trustMeRadio_2.toggled['bool'].connect(self.r_buttonSlot2) # type: ignore
-        # self.trustOtherRadio_2.toggled['bool'].connect(self.r_buttonSlot2) # type: ignore
-        # self.trustFromOtherRadio_2.toggled['bool'].connect(self.r_buttonSlot2) # type: ignore
-        # self.sleepRadio_3.toggled['bool'].connect(self.r_buttonSlot3) # type: ignore
-        # self.mealRadio_3.toggled['bool'].connect(self.r_buttonSlot3) # type: ignore
-        # self.fitRadio_3.toggled['bool'].connect(self.r_buttonSlot3) # type: ignore
-        # self.stressRadio_3.toggled['bool'].connect(self.r_buttonSlot3) # type: ignore
-        # self.conditionRadio_3.toggled['bool'].connect(self.r_buttonSlot3) # type: ignore
-        # self.concentrationRadio_3.toggled['bool'].connect(self.r_buttonSlot3) # type: ignore
-        # self.trustMeRadio_3.toggled['bool'].connect(self.r_buttonSlot3) # type: ignore
-        # self.trustOtherRadio_3.toggled['bool'].connect(self.r_buttonSlot3) # type: ignore
-        # self.trustFromOtherRadio_3.toggled['bool'].connect(self.r_buttonSlot3) # type: ignore
-        # self.sleepRadio_4.toggled['bool'].connect(self.r_buttonSlot4) # type: ignore
-        # self.mealRadio_4.toggled['bool'].connect(self.r_buttonSlot4) # type: ignore
-        # self.fitRadio_4.toggled['bool'].connect(self.r_buttonSlot4) # type: ignore
-        # self.stressRadio_4.toggled['bool'].connect(self.r_buttonSlot4) # type: ignore
-        # self.conditionRadio_4.toggled['bool'].connect(self.r_buttonSlot4) # type: ignore
-        # self.concentrationRadio_4.toggled['bool'].connect(self.r_buttonSlot4) # type: ignore
-        # self.trustMeRadio_4.toggled['bool'].connect(self.r_buttonSlot4) # type: ignore
-        # self.trustOtherRadio_4.toggled['bool'].connect(self.r_buttonSlot4) # type: ignore
-        # self.trustFromOtherRadio_4.toggled['bool'].connect(self.r_buttonSlot4) # type: ignore
-        # self.sleepRadio_5.toggled['bool'].connect(self.r_buttonSlot5) # type: ignore
-        # self.mealRadio_5.toggled['bool'].connect(self.r_buttonSlot5) # type: ignore
-        # self.fitRadio_5.toggled['bool'].connect(self.r_buttonSlot5) # type: ignore
-        # self.stressRadio_5.toggled['bool'].connect(self.r_buttonSlot5) # type: ignore
-        # self.conditionRadio_5.toggled['bool'].connect(self.r_buttonSlot5) # type: ignore
-        # self.concentrationRadio_5.toggled['bool'].connect(self.r_buttonSlot5) # type: ignore
-        # self.trustMeRadio_5.toggled['bool'].connect(self.r_buttonSlot5) # type: ignore
-        # self.trustOtherRadio_5.toggled['bool'].connect(self.r_buttonSlot5) # type: ignore
-        # self.trustFromOtherRadio_5.toggled['bool'].connect(self.r_buttonSlot5) # type: ignore
-        # self.pushButton_Resist.pressed.connect(self.pushResistButtonSlot) # type: ignore
-        # self.pushButton_Past.pressed.connect(self.pushPastButtonSlot) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -742,56 +445,28 @@ class Ui_MainWindow(object):
     
     
     # ***** 「登録」ボタン押下時処理 5/8 山本
+    # *****              編集・追記 5/9 山本
     def pushResistButtonSlot(self):
-        for name in self.groupNameList:
-            val = self.radioGroupDict[name].CheckedID()
-            self.write_to_csv(val + ',')
-    # ***** 「登録」ボタン押下時処理 ここまで
-    
-    
-    # ***** csvへ書き込むための関数 5/8 山本
-    def write_to_csv(self,data):
-        """各要素の値とテキストを備考に書き込む関数"""
         with open('test.csv','a',encoding='utf-8') as f:# 現状とりあえずtest.csvで設定してあります。
                             #'a'で追記(append)モード。
             writer = csv.writer(f)
             writer.writerow(datetime.date.today()+',') #タイムスタンプ(date)
-            for i in range(data):
-                # ラジオボタンの値を取得
-                if self.radio.setCheckedID(1):
-                    data = 1
-                elif self.radio.setChecked(2):
-                    data = 2
-                elif self.radio.setChecked(3):
-                    data = 3
-                elif self.radio.setChecked(4):
-                    data = 4
-                elif self.radio.setChecked(5):
-                    data = 5
-                writer.writerow(data)                #ラジオボタンの値とテキストを書き込む
-    # ***** csvへ書き込むための関数 ここまで
+        #   ラジオボタンの値を取得ー＞csvに書き込み
+        for name in self.groupNameList:
+            val = self.radioGroupDict[name].CheckedId()
+            writer.writerow(val + ",")
+        writer.writerow()
+        # ***** 完了の旨のメッセージボックスを表示 5/10 山本
+        writer.writerow()
+        msg_box = QtWidgets.QMessageBox()
+        msg_box.setIcon(msg_box.information)
+        msg_box.setText('登録完了')
+        msg_box.setInformativeText('本日のセルフチェックの登録が完了しました。')
+        msg_box.setStandardButtons(msg_box.Ok)
+        # メッセージボックスを表示
+        msg_box.exec_()
+    # ***** 「登録」ボタン押下時処理 ここまで
     
-    
-    def r_buttonSlot1(elem):
-        elem = 1
-        return elem
-    def r_buttonSlot2(elem):
-        elem = 2
-        return elem
-    def r_buttonSlot3(elem):
-        elem = 3
-        return elem
-    def r_buttonSlot4(elem):
-        elem = 4
-        return elem
-    def r_buttonSlot5(elem):
-        elem = 5
-        return elem
-    def pushResistButtonSlot():
-        pass
-        
-    def pushPastButtonSlot():
-        pass
     
 if __name__ == "__main__":
     import sys
