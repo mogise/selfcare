@@ -13,6 +13,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 # ***** 追加インポート5/8 山本
 import csv
 import datetime
+# ***** 追加 5/10 山本
+import pastWindow
 
 class Ui_MainWindow(object):
     #data={'sleep':3,'meal':3,'fit':3,'stress':3,'condition':3,'concentration':3,'trustMe':3,'trustOther':3,'trustFromOther':3}
@@ -35,7 +37,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.plainTextEdit = QtWidgets.QPlainTextEdit(self.centralwidget)
-        self.plainTextEdit.setGeometry(QtCore.QRect(20, 625, 351, 91))
+        self.plainTextEdit.setGeometry(QtCore.QRect(20, 630, 351, 91))
         font = QtGui.QFont()
         font.setPointSize(fontSize_sm)
         font.setBold(True)
@@ -43,7 +45,7 @@ class Ui_MainWindow(object):
         self.plainTextEdit.setFont(font)
         self.plainTextEdit.setObjectName("plainTextEdit")
         self.plainTextEdit_2 = QtWidgets.QPlainTextEdit(self.centralwidget)
-        self.plainTextEdit_2.setGeometry(QtCore.QRect(410, 625, 351, 91))
+        self.plainTextEdit_2.setGeometry(QtCore.QRect(410, 630, 351, 91))
         font = QtGui.QFont()
         font.setPointSize(fontSize_sm)
         font.setBold(True)
@@ -357,8 +359,27 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_29.setFont(font)
-        self.label_29.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_29.setAlignment(QtCore.Qt.AlignCenter|QtCore.Qt.AlignLeft)
         self.label_29.setObjectName("label_29")
+        # ***** ラベル追加 5/13 山本
+        self.label_30 = QtWidgets.QLabel(self.centralwidget)
+        self.label_30.setGeometry(QtCore.QRect(20, 600, 140, 20))
+        font = QtGui.QFont()
+        font.setPointSize(fontSize_md)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_30.setFont(font)
+        self.label_30.setAlignment(QtCore.Qt.AlignCenter|QtCore.Qt.AlignTop)
+        self.label_30.setObjectName("label_30")
+        self.label_31 = QtWidgets.QLabel(self.centralwidget)
+        self.label_31.setGeometry(QtCore.QRect(410, 600, 24, 20))
+        font = QtGui.QFont()
+        font.setPointSize(fontSize_md)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_31.setFont(font)
+        self.label_31.setAlignment(QtCore.Qt.AlignCenter|QtCore.Qt.AlignTop)
+        self.label_31.setObjectName("label_31")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 25))
@@ -377,8 +398,8 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "セルフチェック トップ"))
-        self.plainTextEdit.setPlainText(_translate("MainWindow", "予防・回復対処："))
-        self.plainTextEdit_2.setPlainText(_translate("MainWindow", "備考："))
+        self.plainTextEdit.setPlainText(_translate("MainWindow", ""))
+        self.plainTextEdit_2.setPlainText(_translate("MainWindow", ""))
         self.pushButton_Past.setText(_translate("MainWindow", "過去のデータを見る"))
         self.pushButton_Resist.setText(_translate("MainWindow", "登録"))
         self.label_2.setText(_translate("MainWindow", "セルフチェック"))
@@ -410,6 +431,8 @@ class Ui_MainWindow(object):
         self.label_27.setText(_translate("MainWindow", "1"))
         self.label_28.setText(_translate("MainWindow", "3"))
         self.label_29.setText(_translate("MainWindow", "低い　　　　　　　　　　　　　　　　　　　　　　　  　 高い"))
+        self.label_30.setText(_translate("MainWindow", "予防・回復対処"))
+        self.label_31.setText(_translate("MainWindow", "備考"))
         self.menu.setTitle(_translate("MainWindow", "セルフチェック"))
 
 
@@ -492,6 +515,7 @@ class Ui_MainWindow(object):
     
     # ***** 「過去のデータを見る」ボタン押下時処理 5/10 山本
     def pushPastButtonSlot():
+        
         pass
     # ***** 「過去のデータを見る」ボタン押下時処理 ここまで
     
