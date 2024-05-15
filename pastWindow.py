@@ -54,10 +54,12 @@ class MatplotlibCanvas(FigureCanvasQTAgg):
         # 月表示なら積み上げ、週表示なら横並びの棒グラフ
         if(rangeMode == 'month'):
             bottom = 0
+            self.ax.set_ylim(0, 15.5) # y軸範囲を0~15に固定
             for i in range(mode, mode+3):
                 self.ax.bar(drawDf.index, drawDf.iloc[:, i], bottom=bottom, label=columns[i], color=self.cmap(mode+i))
                 bottom += drawDf.iloc[:, i]
         else:
+            self.ax.set_ylim(0, 5.5) # y軸範囲を0~5に固定
             # 各日について3つの項目の棒グラフを並べる。2つ目の棒を中心にとる
             for i in range(mode, mode+3):
                 x = date2num(drawDf.index)
