@@ -14,7 +14,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import csv
 import datetime
 # ***** 追加 5/10 山本
-import pastWindow2
+# ***** pastWinow改修にともなう編集 5/15 寺島
+# import pastWindow2
+from pastWindow import pastWindow
 
 class Ui_MainWindow(object):
     #data={'sleep':3,'meal':3,'fit':3,'stress':3,'condition':3,'concentration':3,'trustMe':3,'trustOther':3,'trustFromOther':3}
@@ -515,11 +517,14 @@ class Ui_MainWindow(object):
     
     # ***** 「過去のデータを見る」ボタン押下時処理 5/10 山本
     # *****                     機能実装        5/13 山本 
+    # ***** pastWinodw改修にともなう編集　　　　　5/15 寺島
     def pushPastButtonSlot(self):
-        self.past_window = QtWidgets.QMainWindow()
-        self.ui_past = pastWindow2.Ui_MainWindow()
-        self.ui_past.setupUi(self.past_window)
-        self.past_window.show()
+        # self.past_window = QtWidgets.QMainWindow()
+        # self.ui_past = pastWindow2.Ui_MainWindow()
+        # self.ui_past.setupUi(self.past_window)
+        # self.past_window.show()
+        self.pWindow = pastWindow()
+        self.pWindow.show()
     # ***** 「過去のデータを見る」ボタン押下時処理 ここまで
     
     
