@@ -449,34 +449,7 @@ class Ui_MainWindow(object):
         radio.setObjectName(objectName)
         radio.setGeometry(QtCore.QRect(pos_x, pos_y, size_x, size_y))
         
-        radio.clicked['bool'].connect(self.radioToggled) # これは最終的に不要かも。↓参照
-        
         return radio
-    
-    
-    def radioToggled(self, value):
-        """ この関数は最終的に不要かも
-        """
-        
-        # ラジオボタングループを辞書化したことにより、
-        # self.radioGroupDict["{項目名}"].checkedId() で
-        # 「ある項目について何番目のラジオボタンがチェックされているか」を取得できます。
-        
-        # たとえば睡眠の3にチェックが入っているとき、self.radioGroupDict["sleep"].checkedId() = 3 です。
-        
-        # これを利用すれば、csv書き込みの際に項目名でループをかけて
-        # 効率的に各項目の値を取得できます。
-        
-        # つまり、「登録」ボタンを押したときにまとめて値を取得すればよく、
-        # 個別の「ラジオボタンがクリックされたとき」の関数は不要になります。
-        
-        # 以下、「登録」ボタンを押したときの関数実装例。色々省略しています
-        # def onPushRegister(self):
-        #   for name in self.groupNameList:
-        #       val = self.radioGroupDict[name].checkedId()
-        #       write_to_csv(val + ',')
-        
-        pass
     
     # ***** ラジオボタン関連の関数ここまで
     
@@ -484,7 +457,9 @@ class Ui_MainWindow(object):
     # ***** 「登録」ボタン押下時処理 5/8 山本
     # *****              編集・追記 5/9 山本
     # *****              編集・追記 5/10 山本
+    # ***** 　　　　　　　編集・追記 5/16 寺島
     def pushResistButtonSlot(self):
+        FILE_PATH = 'data.csv' # 読み込むcsvファイル名
         #データをリストとしてまとめる
         data_to_write = [str(datetime.date.today())]#タイムスタンプ(date)を追加
         
@@ -494,14 +469,14 @@ class Ui_MainWindow(object):
             data_to_write.append(str(val))
             
         #テキストエディタの内容を追加
-        notes = self.plainTextEdit.toPlainText()
-        notes2 = self.plainTextEdit_2.toPlainText()
+        notes = self.plainTextEdit.toPlainText().replace(",", "、")
+        notes2 = self.plainTextEdit_2.toPlainText().replace(",", "、")
         #リストに追加
         data_to_write.append(notes)
         data_to_write.append(notes2)
         
         # csvにリスト内のデータを書き込む
-        with open('test.csv','a',encoding='utf-8') as f:# 現状とりあえずtest.csvで設定してあります。
+        with open(FILE_PATH,'a',encoding='utf-8') as f:# 現状とりあえずtest.csvで設定してあります。
                             #'a'で追記(append)モード。
             writer = csv.writer(f)
             writer.writerow(data_to_write)
@@ -514,15 +489,12 @@ class Ui_MainWindow(object):
             # メッセージボックスを表示
             msg_box.exec_()
     # ***** 「登録」ボタン押下時処理 ここまで
+
     
     # ***** 「過去のデータを見る」ボタン押下時処理 5/10 山本
     # *****                     機能実装        5/13 山本 
     # ***** pastWinodw改修にともなう編集　　　　　5/15 寺島
     def pushPastButtonSlot(self):
-        # self.past_window = QtWidgets.QMainWindow()
-        # self.ui_past = pastWindow2.Ui_MainWindow()
-        # self.ui_past.setupUi(self.past_window)
-        # self.past_window.show()
         self.pWindow = pastWindow()
         self.pWindow.show()
     # ***** 「過去のデータを見る」ボタン押下時処理 ここまで
