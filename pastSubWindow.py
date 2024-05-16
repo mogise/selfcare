@@ -38,8 +38,8 @@ class pastSubWindow(QtWidgets.QWidget):
     self.cat_3_2 = self.makeLabel('他人を信頼', str(data['data']['他人を信頼']), 540, 200)
     self.cat_3_3 = self.makeLabel('他人から信頼', str(data['data']['他人から信頼']), 540, 250)
     
-    self.cat_4_s = self.makeTextbox(str(data['data']['予防・回復対処']), 70, 400)
-    self.cat_5_s = self.makeTextbox(str(data['data']['備考']), 420, 400)
+    self.cat_4_s = self.makeTextbox(data['data']['予防・回復対処'], 70, 400)
+    self.cat_5_s = self.makeTextbox(data['data']['備考'], 420, 400)
 
   def show(self):
     self.w.exec_()
@@ -64,5 +64,7 @@ class pastSubWindow(QtWidgets.QWidget):
     """
     tbox = QtWidgets.QTextEdit(self.w)
     tbox.setGeometry(QtCore.QRect(pos_x, pos_y, 300, 250))
-    tbox.setText(content if content!="0" else "なし") # 記載なしのとき"0"が入力されるので、変換する
+    tbox.insertPlainText(content if content!=0 else "なし") # 記載なしのとき0が入力されるので、変換する
     tbox.setReadOnly(True)
+
+    return tbox

@@ -15,18 +15,18 @@ import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 matplotlib.use('Qt5Agg')
-from PyQt5.QtWidgets import QFileDialog
+# from PyQt5.QtWidgets import QFileDialog
 from matplotlib.dates import date2num, num2date
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
-from matplotlib.figure import Figure
-import seaborn as sns
+# from matplotlib.figure import Figure
+# import seaborn as sns
 import pandas as pd
 import datetime
 import sip
 
 from pastSubWindow import pastSubWindow
 
-FILE_PATH = 'test.csv' # 読み込むcsvファイル名
+FILE_PATH = 'data.csv' # 読み込むcsvファイル名
 YEAR_LIST = ['2024', '2025', '2026', '2027']
 MONTH_LIST = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
 
@@ -429,3 +429,4 @@ class pastWindow(QtWidgets.QWidget):
         today = datetime.date.today()
         dateRange = self.getMonthRange(year=today.year, month=today.month)
         self.drawPlt(startDate=dateRange['startDate'], endDate=dateRange['endDate'])
+        
