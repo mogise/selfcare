@@ -458,36 +458,48 @@ class Ui_MainWindow(object):
     # *****              編集・追記 5/9 山本
     # *****              編集・追記 5/10 山本
     # ***** 　　　　　　　編集・追記 5/16 寺島
-    def pushResistButtonSlot(self):
-        FILE_PATH = 'data.csv' # 読み込むcsvファイル名
-        #データをリストとしてまとめる
-        data_to_write = [str(datetime.date.today())]#タイムスタンプ(date)を追加
+    # ***** 確認画面(ポップアップ)追加 5/16 山本
+    def pushResistButtonSlot(self,event):#メッセージボックスを表示
+        reply = QtWidgets.QMessageBox().question(
+            self.pushButton_Resist,
+            '確認',           #タイトル
+            '保存しますか?',    #メッセージ
+            #Yes|Noボタンを表示する
+            buttons = QtWidgets.QMessageBox.Yes |
+                      QtWidgets.QMessageBox.No)
+        #[Yes]クリックでウィジェットを閉じ、[No]クリックで閉じる処理を無効にする。
+        if reply == QtWidgets.QMessageBox.Yes:
+            FILE_PATH = 'data.csv' # 読み込むcsvファイル名
+            #データをリストとしてまとめる
+            data_to_write = [str(datetime.date.today())]#タイムスタンプ(date)を追加
         
-        #各ラジオボタンの値を追加
-        for name in self.groupNameList:
-            val = self.radioGroupDict[name].checkedId()
-            data_to_write.append(str(val))
+            #各ラジオボタンの値を追加
+            for name in self.groupNameList:
+                val = self.radioGroupDict[name].checkedId()
+                data_to_write.append(str(val))
             
-        #テキストエディタの内容を追加
-        notes = self.plainTextEdit.toPlainText().replace(",", "、")
-        notes2 = self.plainTextEdit_2.toPlainText().replace(",", "、")
-        #リストに追加
-        data_to_write.append(notes)
-        data_to_write.append(notes2)
+            #テキストエディタの内容を追加
+            notes = self.plainTextEdit.toPlainText().replace(",", "、")
+            notes2 = self.plainTextEdit_2.toPlainText().replace(",", "、")
+            #リストに追加
+            data_to_write.append(notes)
+            data_to_write.append(notes2)
         
-        # csvにリスト内のデータを書き込む
-        with open(FILE_PATH,'a',encoding='utf-8') as f:# 現状とりあえずtest.csvで設定してあります。
-                            #'a'で追記(append)モード。
-            writer = csv.writer(f)
-            writer.writerow(data_to_write)
-            # ***** 完了の旨のメッセージボックスを表示 5/10 山本
-            msg_box = QtWidgets.QMessageBox()
-            msg_box.setIcon(QtWidgets.QMessageBox.Information)
-            msg_box.setText('登録完了')
-            msg_box.setInformativeText('本日のセルフチェックの登録が完了しました。')
-            msg_box.setStandardButtons(QtWidgets.QMessageBox.Ok)
-            # メッセージボックスを表示
-            msg_box.exec_()
+            # csvにリスト内のデータを書き込む
+            with open(FILE_PATH,'a',encoding='utf-8') as f:# 現状とりあえずtest.csvで設定してあります。
+                                #'a'で追記(append)モード。
+                writer = csv.writer(f)
+                writer.writerow(data_to_write)
+                # ***** 完了の旨のメッセージボックスを表示 5/10 山本
+                msg_box = QtWidgets.QMessageBox()
+                msg_box.setIcon(QtWidgets.QMessageBox.Information)
+                msg_box.setText('登録完了')
+                msg_box.setInformativeText('本日のセルフチェックの登録が完了しました。')
+                msg_box.setStandardButtons(QtWidgets.QMessageBox.Ok)
+                # メッセージボックスを表示
+                msg_box.exec_()
+        else:
+            pass #イベントを取り消してUI画面に戻る。
     # ***** 「登録」ボタン押下時処理 ここまで
 
     
