@@ -17,6 +17,9 @@ import datetime
 # ***** pastWinow改修にともなう編集 5/15 寺島
 # import pastWindow2
 from pastWindow import pastWindow
+import pandas as pd
+
+FILE_PATH = 'data.csv' # 読み込むcsvファイル名
 
 class Ui_MainWindow(object):
     #data={'sleep':3,'meal':3,'fit':3,'stress':3,'condition':3,'concentration':3,'trustMe':3,'trustOther':3,'trustFromOther':3}
@@ -397,6 +400,9 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        # ***** 5/16 寺島
+        self.checkDataExist()
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "セルフチェック トップ"))
@@ -469,7 +475,7 @@ class Ui_MainWindow(object):
                       QtWidgets.QMessageBox.No)
         #[Yes]クリックでウィジェットを閉じ、[No]クリックで閉じる処理を無効にする。
         if reply == QtWidgets.QMessageBox.Yes:
-            FILE_PATH = 'data.csv' # 読み込むcsvファイル名
+            
             #データをリストとしてまとめる
             data_to_write = [str(datetime.date.today())]#タイムスタンプ(date)を追加
         
@@ -510,6 +516,15 @@ class Ui_MainWindow(object):
         self.pWindow = pastWindow()
         self.pWindow.show()
     # ***** 「過去のデータを見る」ボタン押下時処理 ここまで
+
+
+    # ***** 二重登録防止 5/16 寺島
+    def checkDataExist(self):
+        df = pd.read_csv(FILE_PATH, encoding='utf-8', parse_dates=['date'])
+        df.set_index('date', inplace=True)
+        today = pd.Timestamp(datetime.date.today())
+        if today in df.index:
+            self.pushButton_Resist.setEnabled(False)
     
     
 if __name__ == "__main__":
