@@ -48,7 +48,7 @@ class MatplotlibCanvas(FigureCanvasQTAgg):
         drawDf = df[startDate:endDate] # データ取得範囲を指定
 
         # タイトルを設定
-        title = startDate.strftime('%Y') + '  ' + startDate.strftime('%m/%d') + ' ~ ' + endDate.strftime('%m/%d')
+        title = startDate.strftime('%Y/%m/%d') + ' ~ ' + endDate.strftime('%Y/%m/%d')
         self.ax.set_title(title)
 
         # 月表示なら積み上げ、週表示なら横並びの棒グラフ
@@ -98,10 +98,11 @@ class pastWindow(QtWidgets.QWidget):
         self.mode = 0 # 表示する大項目の切り替え。mode=0なら生活基盤、3なら心と体、6なら信頼
         self.rangeMode = 'month' # 月表示か週表示か
 
-
+        self.setWindowTitle('セルフチェック 過去の記録')
 
         self.centralwidget = QtWidgets.QWidget(self)
         self.centralwidget.setObjectName("centralwidget")
+        
         self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(30, 0, 1100, 900))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")

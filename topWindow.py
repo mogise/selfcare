@@ -15,23 +15,18 @@ import csv
 import datetime
 # ***** 追加 5/10 山本
 # ***** pastWinow改修にともなう編集 5/15 寺島
-# import pastWindow2
 from pastWindow import pastWindow
 import pandas as pd
 
 FILE_PATH = 'data.csv' # 読み込むcsvファイル名
 
 class Ui_MainWindow(object):
-    #data={'sleep':3,'meal':3,'fit':3,'stress':3,'condition':3,'concentration':3,'trustMe':3,'trustOther':3,'trustFromOther':3}
+
     def setupUi(self, MainWindow):
 
         fontSize_lg = 15
         fontSize_md = 10
         fontSize_sm = 11
-
-        labelSize_lg = {'x':400 , 'y':30}
-        labelSize_md = {'x':200 , 'y':30}
-        labelSize_sm = {'x':120 , 'y':20}
 
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 840)
@@ -58,7 +53,7 @@ class Ui_MainWindow(object):
         self.plainTextEdit_2.setFont(font)
         self.plainTextEdit_2.setObjectName("plainTextEdit_2")
         self.pushButton_Past = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Past.setGeometry(QtCore.QRect(120, 740, 181, 40))   #配置変更 5/8 山本
+        self.pushButton_Past.setGeometry(QtCore.QRect(120, 740, 181, 60))   #配置変更 5/8 山本 ボタンサイズ変更 5/17 寺島
         font = QtGui.QFont()
         font.setPointSize(fontSize_md)
         font.setBold(True)
@@ -67,7 +62,7 @@ class Ui_MainWindow(object):
         self.pushButton_Past.setObjectName("pushButton_Past")
         self.pushButton_Past.clicked.connect(self.pushPastButtonSlot)
         self.pushButton_Resist = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Resist.setGeometry(QtCore.QRect(500, 740, 181, 40)) #配置変更 5/8 山本
+        self.pushButton_Resist.setGeometry(QtCore.QRect(500, 740, 181, 60)) #配置変更 5/8 山本  ボタンサイズ変更 5/17 寺島
         font = QtGui.QFont()
         font.setPointSize(fontSize_md)
         font.setBold(True)
@@ -386,16 +381,7 @@ class Ui_MainWindow(object):
         self.label_31.setAlignment(QtCore.Qt.AlignCenter|QtCore.Qt.AlignTop)
         self.label_31.setObjectName("label_31")
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 25))
-        self.menubar.setObjectName("menubar")
-        self.menu = QtWidgets.QMenu(self.menubar)
-        self.menu.setObjectName("menu")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
-        self.menubar.addAction(self.menu.menuAction())
+
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -441,7 +427,6 @@ class Ui_MainWindow(object):
         self.label_29.setText(_translate("MainWindow", "低い　　　　　　　　　　　　　　　　　　　　　　　  　 高い"))
         self.label_30.setText(_translate("MainWindow", "予防・回復対処"))
         self.label_31.setText(_translate("MainWindow", "備考"))
-        self.menu.setTitle(_translate("MainWindow", "セルフチェック"))
 
 
 
@@ -465,7 +450,7 @@ class Ui_MainWindow(object):
     # *****              編集・追記 5/10 山本
     # ***** 　　　　　　　編集・追記 5/16 寺島
     # ***** 確認画面(ポップアップ)追加 5/16 山本
-    # ***** 登録後に二重登録防止
+    # ***** 登録後にボタン非活性化 5/17 寺島
     def pushResistButtonSlot(self,event):#メッセージボックスを表示
         reply = QtWidgets.QMessageBox().question(
             self.pushButton_Resist,
