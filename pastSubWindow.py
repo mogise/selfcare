@@ -8,6 +8,7 @@ class pastSubWindow(QtWidgets.QWidget):
   def __init__(self, parent=None, data=None):
     self.w = QtWidgets.QDialog(parent)
     self.w.resize(800, 700)
+    self.w.setWindowTitle("セルフチェック 過去の記録-詳細")
 
     self.labelFont = QtGui.QFont()
     self.labelFont.setFamily("メイリオ")
