@@ -377,7 +377,7 @@ class Ui_MainWindow(object):
         self.label_30.setAlignment(QtCore.Qt.AlignCenter|QtCore.Qt.AlignTop)
         self.label_30.setObjectName("label_30")
         self.label_31 = QtWidgets.QLabel(self.centralwidget)
-        self.label_31.setGeometry(QtCore.QRect(410, 600, 24, 20))
+        self.label_31.setGeometry(QtCore.QRect(310, 600, 240, 20))
         font = QtGui.QFont()
         font.setPointSize(fontSize_md)
         font.setBold(True)
@@ -465,6 +465,7 @@ class Ui_MainWindow(object):
     # *****              編集・追記 5/10 山本
     # ***** 　　　　　　　編集・追記 5/16 寺島
     # ***** 確認画面(ポップアップ)追加 5/16 山本
+    # ***** 登録後に二重登録防止
     def pushResistButtonSlot(self,event):#メッセージボックスを表示
         reply = QtWidgets.QMessageBox().question(
             self.pushButton_Resist,
@@ -504,6 +505,10 @@ class Ui_MainWindow(object):
                 msg_box.setStandardButtons(QtWidgets.QMessageBox.Ok)
                 # メッセージボックスを表示
                 msg_box.exec_()
+
+                # 登録ボタン非活性化
+                self.pushButton_Resist.setText("本日分登録済")
+                self.pushButton_Resist.setEnabled(False)
         else:
             pass #イベントを取り消してUI画面に戻る。
     # ***** 「登録」ボタン押下時処理 ここまで
@@ -519,11 +524,13 @@ class Ui_MainWindow(object):
 
 
     # ***** 二重登録防止 5/16 寺島
+    # ***** テキスト変更を追加 5/17 寺島
     def checkDataExist(self):
         df = pd.read_csv(FILE_PATH, encoding='utf-8', parse_dates=['date'])
         df.set_index('date', inplace=True)
         today = pd.Timestamp(datetime.date.today())
         if today in df.index:
+            self.pushButton_Resist.setText("本日分登録済")
             self.pushButton_Resist.setEnabled(False)
     
     
