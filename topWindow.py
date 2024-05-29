@@ -22,6 +22,8 @@ FILE_PATH = 'data.csv' # 読み込むcsvファイル名
 
 class Ui_MainWindow(object):
 
+    # ***** レイアウト変更(主にウィンドウ下部テキストとボタンのサイズ・配置変更) 5/29 山本
+    # ***** 変更箇所は☆で示しています
     def setupUi(self, MainWindow):
 
         fontSize_lg = 15
@@ -29,7 +31,7 @@ class Ui_MainWindow(object):
         fontSize_sm = 11
 
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 840)
+        MainWindow.resize(800, 700)
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -37,7 +39,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.plainTextEdit = QtWidgets.QPlainTextEdit(self.centralwidget)
-        self.plainTextEdit.setGeometry(QtCore.QRect(20, 630, 351, 91))
+        self.plainTextEdit.setGeometry(QtCore.QRect(20, 600, 351, 50)) #☆
         font = QtGui.QFont()
         font.setPointSize(fontSize_sm)
         font.setBold(True)
@@ -45,7 +47,7 @@ class Ui_MainWindow(object):
         self.plainTextEdit.setFont(font)
         self.plainTextEdit.setObjectName("plainTextEdit")
         self.plainTextEdit_2 = QtWidgets.QPlainTextEdit(self.centralwidget)
-        self.plainTextEdit_2.setGeometry(QtCore.QRect(410, 630, 351, 91))
+        self.plainTextEdit_2.setGeometry(QtCore.QRect(410, 600, 351, 50)) #☆
         font = QtGui.QFont()
         font.setPointSize(fontSize_sm)
         font.setBold(True)
@@ -53,7 +55,7 @@ class Ui_MainWindow(object):
         self.plainTextEdit_2.setFont(font)
         self.plainTextEdit_2.setObjectName("plainTextEdit_2")
         self.pushButton_Past = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Past.setGeometry(QtCore.QRect(120, 740, 181, 60))   #配置変更 5/8 山本 ボタンサイズ変更 5/17 寺島
+        self.pushButton_Past.setGeometry(QtCore.QRect(120, 655, 150, 40)) #☆  #配置変更 5/8 山本 ボタンサイズ変更 5/17 寺島
         font = QtGui.QFont()
         font.setPointSize(fontSize_md)
         font.setBold(True)
@@ -62,7 +64,7 @@ class Ui_MainWindow(object):
         self.pushButton_Past.setObjectName("pushButton_Past")
         self.pushButton_Past.clicked.connect(self.pushPastButtonSlot)
         self.pushButton_Resist = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_Resist.setGeometry(QtCore.QRect(500, 740, 181, 60)) #配置変更 5/8 山本  ボタンサイズ変更 5/17 寺島
+        self.pushButton_Resist.setGeometry(QtCore.QRect(500, 655, 150, 40)) #☆ #配置変更 5/8 山本  ボタンサイズ変更 5/17 寺島
         font = QtGui.QFont()
         font.setPointSize(fontSize_md)
         font.setBold(True)
@@ -71,7 +73,7 @@ class Ui_MainWindow(object):
         self.pushButton_Resist.setObjectName("pushButton_Resist")
         self.pushButton_Resist.clicked.connect(self.pushResistButtonSlot)
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setGeometry(QtCore.QRect(0, 0, 300, 31))
+        self.label_2.setGeometry(QtCore.QRect(20, 0, 300, 31))
         font = QtGui.QFont()
         font.setPointSize(fontSize_lg)
         font.setBold(True)
@@ -95,7 +97,7 @@ class Ui_MainWindow(object):
         self.label_3.setFont(font)
         self.label_3.setObjectName("label_3")
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
-        self.label_4.setGeometry(QtCore.QRect(40, 270, 171, 21))
+        self.label_4.setGeometry(QtCore.QRect(55, 270, 171, 21)) #☆
         font = QtGui.QFont()
         font.setPointSize(fontSize_md)
         font.setBold(True)
@@ -255,7 +257,7 @@ class Ui_MainWindow(object):
         self.label_17.setFont(font)
         self.label_17.setObjectName("label_17")
         self.label_18 = QtWidgets.QLabel(self.centralwidget)
-        self.label_18.setGeometry(QtCore.QRect(10, 410, 300, 31))
+        self.label_18.setGeometry(QtCore.QRect(20, 410, 300, 31)) #☆
         font = QtGui.QFont()
         font.setPointSize(fontSize_lg)
         font.setBold(True)
@@ -353,7 +355,7 @@ class Ui_MainWindow(object):
         self.label_28.setAlignment(QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
         self.label_28.setObjectName("label_28")
         self.label_29 = QtWidgets.QLabel(self.centralwidget)
-        self.label_29.setGeometry(QtCore.QRect(219, 10, 441, 20))
+        self.label_29.setGeometry(QtCore.QRect(220, 10, 441, 20)) #☆
         font = QtGui.QFont()
         font.setPointSize(fontSize_md)
         font.setBold(True)
@@ -363,7 +365,7 @@ class Ui_MainWindow(object):
         self.label_29.setObjectName("label_29")
         # ***** ラベル追加 5/13 山本
         self.label_30 = QtWidgets.QLabel(self.centralwidget)
-        self.label_30.setGeometry(QtCore.QRect(20, 600, 140, 20))
+        self.label_30.setGeometry(QtCore.QRect(20, 580, 140, 20))
         font = QtGui.QFont()
         font.setPointSize(fontSize_md)
         font.setBold(True)
@@ -372,7 +374,7 @@ class Ui_MainWindow(object):
         self.label_30.setAlignment(QtCore.Qt.AlignCenter|QtCore.Qt.AlignTop)
         self.label_30.setObjectName("label_30")
         self.label_31 = QtWidgets.QLabel(self.centralwidget)
-        self.label_31.setGeometry(QtCore.QRect(310, 600, 240, 20))
+        self.label_31.setGeometry(QtCore.QRect(310, 580, 240, 20))
         font = QtGui.QFont()
         font.setPointSize(fontSize_md)
         font.setBold(True)
@@ -424,7 +426,7 @@ class Ui_MainWindow(object):
         self.label_26.setText(_translate("MainWindow", "2"))
         self.label_27.setText(_translate("MainWindow", "1"))
         self.label_28.setText(_translate("MainWindow", "3"))
-        self.label_29.setText(_translate("MainWindow", "低い　　　　　　　　　　　　　　　　　　　　　　　  　 高い"))
+        self.label_29.setText(_translate("MainWindow", " 低い　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　 高い"))
         self.label_30.setText(_translate("MainWindow", "予防・回復対処"))
         self.label_31.setText(_translate("MainWindow", "備考"))
 
